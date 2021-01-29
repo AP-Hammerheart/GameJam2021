@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
 
+
     public CharacterController2d controller;
     public Animator anim;
     public float runSpeed = 40f;
@@ -48,5 +49,6 @@ public class PlayerMovement : MonoBehaviour
         // Move our character
         controller.Move(horizontalMove, jump);
         jump = false;
+
     }
 }
