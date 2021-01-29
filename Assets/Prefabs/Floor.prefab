@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size:
-    x: 20
-    y: 20
+    x: 15
+    y: 15
   cellPrefab: {fileID: 2900499835650125668, guid: 7be159031dc269c48b39c23e4bb89a4b, type: 3}
   passagePrefab: {fileID: 6549664009338219316, guid: 4ecc3d8802a2cc94d92a1fc7188ac58b, type: 3}
   wallPrefab: {fileID: 6443652894733495456, guid: d732e3c838303704482f40c10fa9ac32, type: 3}
