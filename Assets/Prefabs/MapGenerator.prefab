@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4240337713844986453
+--- !u!1 &944067666861374495
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2824205645050782056}
-  - component: {fileID: 6549664009338219316}
+  - component: {fileID: 8691521915401149841}
+  - component: {fileID: 4053609013008615480}
   m_Layer: 0
-  m_Name: FloorPassage
+  m_Name: MapGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2824205645050782056
+--- !u!4 &8691521915401149841
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4240337713844986453}
+  m_GameObject: {fileID: 944067666861374495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0.9997325, y: 0.47144508, z: 0.9597898}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6549664009338219316
+--- !u!114 &4053609013008615480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4240337713844986453}
+  m_GameObject: {fileID: 944067666861374495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91300e3fcfbf2eb4caf031be9498b5f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9838773e29356ee469c73cb67584c23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cell: {fileID: 0}
-  otherCell: {fileID: 0}
-  direction: 0
+  mapSegmentPrefab: {fileID: 4662542532082511765, guid: 98b61f3a4fd2e0e4ca68857a7a7660cd, type: 3}
+  size:
+    x: 2000
+    y: 2000
+  generationStepDelay: 0

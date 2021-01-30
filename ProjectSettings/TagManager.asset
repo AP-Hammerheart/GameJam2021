@@ -51,3 +51,6 @@ TagManager:
   - name: New Layer
     uniqueID: 3237593373
     locked: 0
+  - name: Walls
+    uniqueID: 1044624897
+    locked: 0
