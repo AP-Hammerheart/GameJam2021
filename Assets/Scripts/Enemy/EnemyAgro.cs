@@ -12,12 +12,14 @@ public class EnemyAgro : MonoBehaviour
     float moveSpeed;
 
     public Rigidbody2D rb2d;
-    
+    public CircleCollider2D cr2d;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        //rb2d = GetComponent<Rigidbody2D>();
+        //cr2d = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -38,6 +40,21 @@ public class EnemyAgro : MonoBehaviour
 
         }
 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            rb2d.velocity = new Vector2(moveSpeed, 0);
+            transform.localScale = new Vector2(1, 1);
+
+        }
+        else if (transform.position.x > player.position.x)
+        {
+            //enemy is to the right side of the player, so move left
+            rb2d.velocity = new Vector2(-moveSpeed, 0);
+            transform.localScale = new Vector2(-1, 1);
+        }
     }
 
     void ChasePlayer()
