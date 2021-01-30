@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     {
 
         Debug.Log(hitInfo.name);
-        if(hitInfo)
+        if(hitInfo.tag == "Enemy")
         hitInfo.GetComponent<CharacterStats>().TakeDamage(damage);
         Destroy(gameObject);
     }
