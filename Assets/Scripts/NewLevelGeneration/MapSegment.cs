@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class MapSegment : MonoBehaviour
 {
-
-    void Start()
+    public enum Kloss
     {
-        
+        largeLeftEnd, largeMiddleSingle, largeMiddleSingleW, largeRightEnd,
+        largeToSmall, SmallLeftEnd, SmallLeftStaircaseW1, SmallMiddleSingle,
+        SmallMiddleSingleW, SmallRightEnd, SmallRightStaircase, SmallToLarge
     }
 
-    // Update is called once per frame
-    void Update()
+    public Kloss thisKloss;
+
+    public void SetKloss(Kloss kloss)
     {
-        
+        thisKloss = kloss;
     }
+
 }

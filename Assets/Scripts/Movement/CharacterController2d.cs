@@ -17,7 +17,7 @@ public class CharacterController2d : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 velocity = Vector3.zero;
-    //public Animator anim;
+    public Animator anim;
 
     private void Awake()
     {
@@ -72,14 +72,11 @@ public class CharacterController2d : MonoBehaviour
         if (m_Grounded && jump)
         {
             // Add a vertical force to the player.
-           
+            anim.SetTrigger("Jump");
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
             m_Grounded = false;
-
-
         }
     }
-
 
     private void Update()
     {
