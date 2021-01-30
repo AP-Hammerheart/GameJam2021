@@ -5,14 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterStats))]
 public class MeleeAttack : MonoBehaviour
 {
-        public CharacterStats myStats;
-        public Transform attackPos;
-        public LayerMask whatisEnemies;
-
+        public CharacterStats Stats;
+        public Transform AttackPos;
+        public LayerMask WhatIsEnemies;
+        //public float AttackSpeed = 1f;
+        private float Cooldown = 0.5f;
+        private float CooldownCurrent = 0f;
         public float AttackRadius = 3f;
-       // public Animator anim;
-
+        // public Animator anim;
         Transform target;
+
+        void Awake()
+        {
+            Stats = GetComponent<CharacterStats>();
+        }
 
         // Update is called once per frame
         void Update()
@@ -21,20 +27,28 @@ public class MeleeAttack : MonoBehaviour
             {
                 MeleeAttackAction();
             }
+            CooldownCurrent -= Time.deltaTime;
         }
+
         public void MeleeAttackAction()
         {
             //anim.SetTrigger("Attack");
-            Debug.Log("Melee ATTAAAACK");
-            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, AttackRadius, whatisEnemies);
-            for (int i = 0; i < enemiesToDamage.Length; i++)
+           // Debug.Log("Melee ATTAAAACK");
+            if(CooldownCurrent <= 0)
             {
-                enemiesToDamage[i].GetComponent<CharacterStats>().TakeDamage(myStats.TotalDamage);
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(AttackPos.position, AttackRadius, WhatIsEnemies);
+                for (int i = 0; i < enemiesToDamage.Length; i++)
+                {
+                    enemiesToDamage[i].GetComponent<CharacterStats>().TakeDamage(Stats.TotalDamage);
+                }
+            CooldownCurrent = Cooldown;
             }
+
         }
+
         void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(attackPos.position, AttackRadius);
+            Gizmos.DrawWireSphere(AttackPos.position, AttackRadius);
         }
 }
