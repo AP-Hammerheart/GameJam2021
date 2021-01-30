@@ -13,15 +13,6 @@ public class Floor : MonoBehaviour
     private FloorCell[,] cells;
     public float generationStepDelay;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public FloorCell GetCell(IntVector2 coordinates)
     {
@@ -46,12 +37,12 @@ public class Floor : MonoBehaviour
     {
         int currentIndex = activeCells.Count - 1;
         FloorCell currentCell = activeCells[currentIndex];
-        if (currentCell.IsFullyInitialized())
+        if (currentCell.IsFullyInitialized)
         {
             activeCells.RemoveAt(currentIndex);
             return;
         }
-        FloorDirection direction = currentCell.RandomUninitializedDirection();
+        FloorDirection direction = currentCell.RandomUninitializedDirection;
         IntVector2 coordinates = currentCell.coordinates + direction.ToIntVector2();
         if (ContainsCoordinates(coordinates))
         {
@@ -65,43 +56,55 @@ public class Floor : MonoBehaviour
             else
             {
                 CreateWall(currentCell, neighbor, direction);
-                // No longer remove the cell here.
             }
         }
         else
         {
             CreateWall(currentCell, null, direction);
-            // No longer remove the cell here.
         }
     }
 
-    private void CreateWall(FloorCell currentCell, FloorCell neighbor, FloorDirection direction)
+    private FloorCell CreateCell(IntVector2 coordinates)
     {
-        FloorWall wall = Instantiate(wallPrefab) as FloorWall;
-        wall.Initialize(currentCell, neighbor, direction);
-        if (neighbor != null)
-        {
-            wall = Instantiate(wallPrefab) as FloorWall;
-            wall.Initialize(neighbor, currentCell, direction.GetOpposite());
-        }
+        FloorCell newCell = Instantiate(cellPrefab) as FloorCell;
+        cells[coordinates.x, coordinates.y] = newCell;
+        newCell.coordinates = coordinates;
+        newCell.name = "Floor Cell " + coordinates.x + ", " + coordinates.y;
+        newCell.transform.parent = transform;
+        newCell.transform.localPosition = new Vector3(coordinates.x - size.x * 0.5f + 0.5f, coordinates.y - size.y * 0.5f + 0.5f, 0f);
+        return newCell;
     }
 
-    private void CreatePassage(FloorCell currentCell, FloorCell neighbor, FloorDirection direction)
+    private void CreatePassage(FloorCell cell, FloorCell otherCell, FloorDirection direction)
     {
         FloorPassage passage = Instantiate(passagePrefab) as FloorPassage;
-        passage.Initialize(currentCell, neighbor, direction);
+        passage.Initialize(cell, otherCell, direction);
         passage = Instantiate(passagePrefab) as FloorPassage;
-        passage.Initialize(neighbor, currentCell, direction.GetOpposite());
+        passage.Initialize(otherCell, cell, direction.GetOpposite());
+    }
+
+    private void CreateWall(FloorCell cell, FloorCell otherCell, FloorDirection direction)
+    {
+        FloorWall wall = Instantiate(wallPrefab) as FloorWall;
+        wall.Initialize(cell, otherCell, direction);
+        if (otherCell != null)
+        {
+            wall = Instantiate(wallPrefab) as FloorWall;
+            wall.Initialize(otherCell, cell, direction.GetOpposite());
+        }
     }
 
     private void DoFirstGenerationStep(List<FloorCell> activeCells)
     {
-        activeCells.Add(CreateCell(RandomCoordinates()));
+        activeCells.Add(CreateCell(RandomCoordinates));
     }
 
-    public IntVector2 RandomCoordinates()
+    public IntVector2 RandomCoordinates
     {
-        return new IntVector2(UnityEngine.Random.Range(0, size.x), UnityEngine.Random.Range(0, size.y));
+        get
+        {
+            return new IntVector2(UnityEngine.Random.Range(0, size.x), UnityEngine.Random.Range(0, size.y));
+        }
     }
 
     public bool ContainsCoordinates(IntVector2 coordinate)
@@ -109,14 +112,4 @@ public class Floor : MonoBehaviour
         return coordinate.x >= 0 && coordinate.x < size.x && coordinate.y >= 0 && coordinate.y < size.y;
     }
 
-    private FloorCell CreateCell(IntVector2 coordinates)
-    {
-        FloorCell newCell = Instantiate(cellPrefab) as FloorCell;
-        cells[coordinates.x, coordinates.y] = newCell;
-        newCell.name = "Floor cell: " + coordinates.x + ", " + coordinates.y;
-        newCell.coordinates = coordinates;
-        newCell.transform.SetParent(transform);
-        newCell.transform.localPosition = new Vector3(coordinates.x - size.x * 0.5f + 0.5f, coordinates.y - size.y * 0.5f + 0.5f, 0f);
-        return newCell;
-    }
 }
