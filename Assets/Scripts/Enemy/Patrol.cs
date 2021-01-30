@@ -4,31 +4,62 @@ using UnityEngine;
 
 public class Patrol : MonoBehaviour
 {
-    public float speed;
-    public float distance;
 
-    private bool movingRight = true;
+  
+        public float speed;
+        public float distance;
 
-    public Transform groundDetection;
+        private bool movingRight = true;
 
-    private void Update()
-    {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        public Transform groundDetection;
 
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2f);
-        if (groundInfo.collider == false)
+         void Update()
         {
-            if (movingRight == true)
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+            RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2f);
+            if (groundInfo.collider == false)
             {
-                transform.eulerAngles = new Vector3(0, -180, 0);
-                movingRight = false;
+                if (movingRight == true)
+                {
+                    transform.eulerAngles = new Vector3(0, -180, 0);
+                    movingRight = false;
+                }
+                else
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    movingRight = true;
+                }
             }
-            else
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                movingRight = true;
-            }
+
         }
-            
-    }
+    
+
+    //public float speed;
+    //public float distance;
+
+    //private bool movingRight = true;
+
+    //public Transform groundDetection;
+
+    //private void Update()
+    //{
+    //    transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+    //    RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2f);
+    //    if (groundInfo.collider == false)
+    //    {
+    //        if (movingRight == true)
+    //        {
+    //            transform.eulerAngles = new Vector3(0, -180, 0);
+    //            movingRight = false;
+    //        }
+    //        else
+    //        {
+    //            transform.eulerAngles = new Vector3(0, 0, 0);
+    //            movingRight = true;
+    //        }
+    //    }
+
+    //}
 }
