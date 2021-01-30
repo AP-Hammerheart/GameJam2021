@@ -16,7 +16,7 @@ public class GameManager1 : MonoBehaviour
     private void BeginGame()
     {
         generatorInstance = Instantiate(generator) as MapGenerator;
-        StartCoroutine(generatorInstance.GenerateMap());
+        StartCoroutine(generatorInstance.GenerateMap(transform));
     }
 
     // Update is called once per frame

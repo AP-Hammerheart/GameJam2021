@@ -5,91 +5,51 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public MapSegment mapSegmentPrefab;
-    private MapSegment[,] mapSegments;
-    public IntVector2 size;
+    public MapSegment startSegment;
+    public MapSegment endSegment;
+    public MapSegment[] mapSegmentPrefabs;
+    //public IntVector2 size;
     public float generationStepDelay;
+    private List<MapSegment> allSegments;
+    public int segmentAmount;
 
-    public IEnumerator GenerateMap()
+    public IEnumerator GenerateMap(Transform startPos)
     {
         WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
-        mapSegments = new MapSegment[size.x, size.y];
-        List<MapSegment> segments = new List<MapSegment>();
-        DoFirstGenerationStep(segments);
-        while (segments.Count > 0)
+        allSegments = new List<MapSegment>();
+        Vector3 whereToSpawn = startPos.position;
+        FirstStepGen(whereToSpawn);
+
+        for (int x = 0; x < segmentAmount; x++)
         {
-            yield return delay;
-            DoNextGenerationStep(segments);
+            whereToSpawn = new Vector3(whereToSpawn.x + 5f, whereToSpawn.y, 0f);
+
+            if (x == segmentAmount - 1)
+                LastStepGen(whereToSpawn);
+            else
+            {
+                CreateMapSegment(whereToSpawn, mapSegmentPrefabs[(UnityEngine.Random.Range(0, mapSegmentPrefabs.Length))]);
+            }
         }
         yield return delay;
     }
 
-    private void DoNextGenerationStep(List<MapSegment> activeSegments)
+    private MapSegment CreateMapSegment(Vector3 pos, MapSegment mapSegment)
     {
-        int currentIndex = activeSegments.Count - 1;
-        MapSegment currentSegment = activeSegments[currentIndex];
-
-        if (currentSegment.IsFullyInitialized)
-        {
-            activeSegments.RemoveAt(currentIndex);
-            return;
-        }
-        var direction = currentSegment.RandomUninitializedDirection;
-
-        IntVector2 coordinates = currentSegment.coordinates + direction.ToIntVector2();
-
-        if (ContainsCoordinates(coordinates))
-        {
-            MapSegment neighbor = GetSegment(coordinates);
-            if (neighbor == null)
-            {
-                neighbor = CreateSegment(coordinates);
-                //CreatePassage(currentCell, neighbor, direction);
-                //activeCells.Add(neighbor);
-            }
-            else
-            {
-                //CreateWall(currentCell, neighbor, direction);
-            }
-        }
-        else
-        {
-            //CreateWall(currentCell, null, direction);
-        }
-
+        MapSegment ms = Instantiate(mapSegment, pos, Quaternion.identity);
+        ms.name = "MapSegment: " + pos;
+        ms.transform.parent = transform;
+        allSegments.Add(ms);
+        return ms;
     }
 
-    public bool ContainsCoordinates(IntVector2 coordinate)
+    private void FirstStepGen(Vector3 pos)
     {
-        return coordinate.x >= 0 && coordinate.x < size.x && coordinate.y >= 0 && coordinate.y < size.y;
+        CreateMapSegment(pos, startSegment);
     }
 
-    private void DoFirstGenerationStep(List<MapSegment> activeSegments)
+    private void LastStepGen(Vector3 pos)
     {
-        activeSegments.Add(CreateSegment(RandomCoordinates));
+        CreateMapSegment(pos, endSegment);
     }
-
-    private MapSegment CreateSegment(IntVector2 coordinates)
-    {
-        MapSegment newMapSegment = Instantiate(mapSegmentPrefab) as MapSegment;
-        mapSegments[coordinates.x, coordinates.y] = newMapSegment;
-        newMapSegment.coordinates = coordinates;
-        newMapSegment.name = "Map Segment: " + coordinates.x + ", " + coordinates.y;
-        newMapSegment.transform.parent = transform;
-        newMapSegment.transform.localPosition = new Vector3(coordinates.x - size.x, coordinates.y - size.y, 0f);
-        return newMapSegment;
-    }
-
-    public IntVector2 RandomCoordinates
-    {
-        get
-        {
-            return new IntVector2(UnityEngine.Random.Range(0, size.x), UnityEngine.Random.Range(0, size.y));
-        }
-    }
-    public MapSegment GetSegment(IntVector2 coordinates)
-    {
-        return mapSegments[coordinates.x, coordinates.y];
-    }
-
 }
