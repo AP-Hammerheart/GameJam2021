@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6877679095566845588}
   - component: {fileID: 7389088838008894211}
-  m_Layer: 0
+  - component: {fileID: 1490493859222999659}
+  m_Layer: 8
   m_Name: LargeMiddleSingleW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,10 +49,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsICanSpawn:
   - {fileID: 6040741128311923470, guid: 72ec771dbbe8b734ba46635666798bc8, type: 3}
+  - {fileID: 4780304177091794187, guid: b99ee2a1291c5784d876da38d3a19487, type: 3}
   enemiesICanSpawn: []
   spawnPoints:
   - {fileID: 1583980747339080251}
   thisKloss: 2
+--- !u!114 &1490493859222999659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91363526174895441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430a02ad146db7c44b422d26d87088b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &641706493145868422
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8917561146731939921}
   - component: {fileID: 812018940931432956}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +121,7 @@ GameObject:
   - component: {fileID: 985636089857630137}
   - component: {fileID: 985636089857630139}
   - component: {fileID: 985636089857630138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1583980747339080251}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2038803879966686458}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8356774077083839977}
   - component: {fileID: 4734239079703502229}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

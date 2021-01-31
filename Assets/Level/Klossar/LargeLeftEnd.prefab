@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2969013099260619687}
   - component: {fileID: -3477240092646537584}
+  - component: {fileID: 4188641983887689643}
   m_Layer: 8
   m_Name: LargeLeftEnd
   m_TagString: Untagged
@@ -79,10 +80,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsICanSpawn:
   - {fileID: 6040741128311923470, guid: 72ec771dbbe8b734ba46635666798bc8, type: 3}
+  - {fileID: 4780304177091794187, guid: b99ee2a1291c5784d876da38d3a19487, type: 3}
   enemiesICanSpawn: []
   spawnPoints:
   - {fileID: 5729140585938236111}
   thisKloss: 0
+--- !u!114 &4188641983887689643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7925712666966302342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430a02ad146db7c44b422d26d87088b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &94652578766437762
 PrefabInstance:
   m_ObjectHideFlags: 0

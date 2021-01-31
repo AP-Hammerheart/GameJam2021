@@ -28,8 +28,12 @@ public class MapGenerator : Randomizer
     public MapSegment SmallRightStaircasePrefab;
     public MapSegment SmallToLargePrefab;
 
+    public MapSegment Elevator;
+    public MapSegment ElevatorPlusLargeToSmall;
+    public MapSegment ElevatorPlusSmallToLarge;
     #endregion
 
+    public GameObject Player;
 
     public string nextKlossString;
     public MapSegment lastCreated;
@@ -42,6 +46,11 @@ public class MapGenerator : Randomizer
     public int wildcard;
     private Direction dir;
     private Vector3 whereToSpawn;
+
+    private void Start()
+    {
+        segmentAmount += wildcard;
+    }
 
     public IEnumerator GenerateMap(Transform startPos, int roundNumber)
     {
@@ -60,16 +69,37 @@ public class MapGenerator : Randomizer
                 LastStepGen(roundNumber);
             else
             {
+                if (x == segmentAmount - 2 && lastCreated.thisKloss == Kloss.largeToSmall)
+                {
+                    segmentAmount += 1;
+                }
                 CreateMapSegment();
             }
         }
         yield return delay;
+        ColourWorld();
+    }
+
+    private void ColourWorld()
+    {
+        Color background = new Color(
+              UnityEngine.Random.Range(0f, 1f),
+              UnityEngine.Random.Range(0f, 1f),
+              UnityEngine.Random.Range(0f, 1f)
+          );
+        for (int x = 0; x < allSegments.Count; x++)
+        {
+            var t = allSegments[x];
+            var y = t.GetComponent<Block>();
+            y.SetColor(background);
+        }
     }
 
     private Direction Flip()
     {
-
-        int x = UnityEngine.Random.Range(0, 1);
+        var gm = FindObjectOfType<GameManager1>();
+        gm.terminalSpawned = false;
+        int x = UnityEngine.Random.Range(0, 2);
         if (x == 0)
             //Heading right
             return Direction.Right;
@@ -93,6 +123,7 @@ public class MapGenerator : Randomizer
         return ms;
     }
 
+
     private void FirstStepGen(Vector3 pos, int roundNumber)
     {
         if (roundNumber == 1)
@@ -104,7 +135,8 @@ public class MapGenerator : Randomizer
     private void CreateLastMapSegment()
     {
         whereToSpawn = DetermineNextSpawnPosition();
-        MapSegment ms = Instantiate(DetermineLastKloss(), whereToSpawn, Quaternion.identity);
+        MapSegment ms1 = DetermineLastKloss();
+        MapSegment ms = Instantiate(ms1, whereToSpawn, Quaternion.identity);
         ms.SetKloss(nextKlossString);
         ms.transform.parent = transform;
         allSegments.Add(ms);
@@ -112,18 +144,68 @@ public class MapGenerator : Randomizer
         lastCreated = ms;
     }
 
+    //private void AddFillerKloss(MapSegment kloss, Vector3 pos)
+    //{
+    //    MapSegment ms = Instantiate(kloss, pos, Quaternion.identity);
+    //    ms.transform.parent = transform;
+    //    allSegments.Add(ms);
+    //    lastCreated = ms;
+    //}
+
+
     private MapSegment DetermineLastKloss()
     {
         if (dir == Direction.Right)
         {
-            nextKlossString = "SmallToLargePrefab";
-            return SmallToLargePrefab;
+            if (lastCreated.thisKloss == Kloss.largeMiddleSingle || lastCreated.thisKloss == Kloss.largeMiddleSingleW || lastCreated.thisKloss == Kloss.SmallToLarge)
+            {
+                whereToSpawn = DetermineLastSpawnPosition();
+                //AddFillerKloss(SmallToLargePrefab, whereToSpawn);
+                nextKlossString = "ElevatorPlusLargeToSmall";
+                NextKloss = ElevatorPlusLargeToSmall;
+                NextKloss.SetKloss("ElevatorPlusLargeToSmall");
+                return ElevatorPlusLargeToSmall;
+            }
+            if (lastCreated.thisKloss == Kloss.SmallMiddleSingle || lastCreated.thisKloss == Kloss.SmallMiddleSingleW ||
+                 lastCreated.thisKloss == Kloss.SmallLeftStaircaseW1 || lastCreated.thisKloss == Kloss.SmallRightStaircase)
+            {
+                //whereToSpawn = DetermineNextSpawnPosition();
+                nextKlossString = "Elevator";
+                NextKloss = Elevator;
+                NextKloss.SetKloss("Elevator");
+                return Elevator;
+            }
+            if (lastCreated.thisKloss == Kloss.largeToSmall)
+            {
+                whereToSpawn = DetermineLastSpawnPosition();
+                nextKlossString = "Elevator";
+                NextKloss = Elevator;
+                NextKloss.SetKloss("Elevator");
+                return Elevator;
+            }
         }
         else
         {
-            nextKlossString = "largeToSmallPrefab";
-            return largeToSmallPrefab;
+            if (lastCreated.thisKloss == Kloss.largeMiddleSingle || lastCreated.thisKloss == Kloss.largeMiddleSingleW|| lastCreated.thisKloss == Kloss.largeToSmall)
+            {
+                whereToSpawn = DetermineLastSpawnPosition();
+                nextKlossString = "ElevatorPlusSmallToLarge";
+                NextKloss = ElevatorPlusSmallToLarge;
+                NextKloss.SetKloss("ElevatorPlusSmallToLarge");
+                return ElevatorPlusSmallToLarge;
+
+            }
+            if (lastCreated.thisKloss == Kloss.SmallToLarge || lastCreated.thisKloss == Kloss.SmallLeftStaircaseW1|| 
+                lastCreated.thisKloss == Kloss.SmallMiddleSingle|| lastCreated.thisKloss == Kloss.SmallMiddleSingleW|| lastCreated.thisKloss == Kloss.SmallRightStaircase)
+            {
+                nextKlossString = "Elevator";
+                NextKloss = Elevator;
+                NextKloss.SetKloss("Elevator");
+                return Elevator;
+
+            }
         }
+        return null;
     }
 
     private MapSegment CreateFirstMapSegment(Vector3 pos, MapSegment largeLeftEndPrefab)
@@ -138,34 +220,13 @@ public class MapGenerator : Randomizer
         return ms;
     }
 
-    //private void UpdateNextPos(MapSegment newestSeg)
-    //{
-    //    if (dir == Direction.Right)
-    //    {
-    //        var t = newestSeg.transform.localScale;
-    //        Vector3 diff = new Vector3((t.x + 5), newestSeg.transform.position.y, 0);
-    //        whereToSpawn = diff;
-    //    }
-    //    else
-    //    {
-    //        var t = newestSeg.transform.localScale;
-    //        Vector3 diff = new Vector3((t.x - 5), newestSeg.transform.position.y, 0);
-    //        whereToSpawn = diff;
-    //    }
-    //}
-
     private void LastStepGen(int roundNumber)
     {
-        if (roundNumber == 10)
+        if (roundNumber == 30)
         {
-            //tdodo
+            //TODO WIN!
         }
         CreateLastMapSegment();
-        //if (dir == Direction.Right)
-        //    CreateMapSegment(DetermineNextSpawnPosition(), largeLeftEndPrefab);
-
-        //if (dir == Direction.Right)
-        //    CreateMapSegment(DetermineNextSpawnPosition(), largeRightEndPrefab);
     }
 
     private MapSegment DetermineFirstKloss()
@@ -181,6 +242,48 @@ public class MapGenerator : Randomizer
             return largeToSmallPrefab;
         }
     }
+    private Vector3 DetermineLastSpawnPosition()
+    {
+        float xOffset = 0f;
+        float yOffset = 0f;
+
+        if (lastCreated.thisKloss == Kloss.largeMiddleSingle || lastCreated.thisKloss == Kloss.largeMiddleSingleW)
+        {
+            if (dir == Direction.Right)
+            {
+                xOffset = 10f;
+            }
+            if (dir == Direction.Left)
+            {
+                xOffset = -20f;
+            }
+        }
+        if (lastCreated.thisKloss == Kloss.largeToSmall)
+        {
+            if (dir == Direction.Right)
+            {
+                xOffset = 10f;
+            }
+        }
+        if (lastCreated.thisKloss == Kloss.SmallRightStaircase)
+        {
+            if (dir == Direction.Right)
+            {
+                xOffset = 10f;
+                yOffset = 5f;
+            }
+            if (dir == Direction.Left)
+            {
+                xOffset = -10f;
+            }
+        }
+
+        float newX = lastCreated.transform.position.x;
+        float newY = lastCreated.transform.position.y;
+        Vector3 nextPos = new Vector3(newX + xOffset, newY + yOffset, 0);
+        return nextPos;
+    }
+
 
     private Vector3 DetermineNextSpawnPosition()
     {
@@ -232,7 +335,7 @@ public class MapGenerator : Randomizer
         {
             if (dir == Direction.Right)
             {
-                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW)
+                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW|| NextKloss.thisKloss == Kloss.Elevator)
                     xOffset = 10f;
                 if (NextKloss.thisKloss == Kloss.SmallRightEnd)
                     xOffset = 20f;
@@ -261,7 +364,8 @@ public class MapGenerator : Randomizer
         {
             if (dir == Direction.Right)
             {
-                if (NextKloss.thisKloss == Kloss.SmallLeftStaircaseW1 || NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW)
+                if (NextKloss.thisKloss == Kloss.SmallLeftStaircaseW1 || NextKloss.thisKloss == Kloss.SmallMiddleSingle || 
+                    NextKloss.thisKloss == Kloss.SmallMiddleSingleW || NextKloss.thisKloss == Kloss.Elevator)
                 {
                     xOffset = 10f;
                     yOffset = -5f;
@@ -286,7 +390,7 @@ public class MapGenerator : Randomizer
                     xOffset = -15f;
                     yOffset = 5f;
                 }
-                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW)
+                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW || NextKloss.thisKloss == Kloss.Elevator)
                     xOffset = -10f;
             }
         }
@@ -294,7 +398,7 @@ public class MapGenerator : Randomizer
         {
             if (dir == Direction.Right)
             {
-                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW)
+                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW || NextKloss.thisKloss == Kloss.Elevator)
                 {
                     xOffset = 5f;
                 }
@@ -309,8 +413,8 @@ public class MapGenerator : Randomizer
             }
             if (dir == Direction.Left)
             {
-                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW)
-                    xOffset = 5f;
+                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW || NextKloss.thisKloss == Kloss.Elevator)
+                    xOffset = -5f;
                 if (NextKloss.thisKloss == Kloss.largeToSmall || NextKloss.thisKloss == Kloss.SmallToLarge || NextKloss.thisKloss == Kloss.SmallRightStaircase)
                 {
                     xOffset = -10f;
@@ -348,7 +452,8 @@ public class MapGenerator : Randomizer
         {
             if (dir == Direction.Right)
             {
-                if (NextKloss.thisKloss == Kloss.SmallToLarge || NextKloss.thisKloss == Kloss.SmallRightStaircase|| NextKloss.thisKloss == Kloss.SmallLeftStaircaseW1)
+                if (NextKloss.thisKloss == Kloss.SmallToLarge || NextKloss.thisKloss == Kloss.SmallRightStaircase|| 
+                    NextKloss.thisKloss == Kloss.SmallLeftStaircaseW1 || NextKloss.thisKloss == Kloss.Elevator)
                 {
                     xOffset = 15f;
                     yOffset = 5f;
@@ -358,7 +463,7 @@ public class MapGenerator : Randomizer
                     xOffset = 20f;
                     yOffset = 5f;
                 }
-                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW)
+                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW )
                 {
                     xOffset = 10f;
                     yOffset = 5f;
@@ -376,7 +481,7 @@ public class MapGenerator : Randomizer
                     xOffset = -15f;
                     yOffset = 5f;
                 }
-                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW)
+                if (NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.SmallMiddleSingleW || NextKloss.thisKloss == Kloss.Elevator)
                 {
                     xOffset = -10f;
                 }
@@ -389,7 +494,7 @@ public class MapGenerator : Randomizer
                     xOffset = -15f;
                 }
             }
-        }
+        }//tt
         if (lastCreated.thisKloss == Kloss.SmallToLarge)
         {
             if (dir == Direction.Right)
@@ -419,7 +524,7 @@ public class MapGenerator : Randomizer
                     xOffset = -15f;
                     yOffset = 5f;
                 }
-                if (NextKloss.thisKloss == Kloss.SmallMiddleSingleW || NextKloss.thisKloss == Kloss.SmallMiddleSingle)
+                if (NextKloss.thisKloss == Kloss.SmallMiddleSingleW || NextKloss.thisKloss == Kloss.SmallMiddleSingle || NextKloss.thisKloss == Kloss.Elevator)
                 {
                     xOffset = -10f;
                 }
@@ -430,11 +535,7 @@ public class MapGenerator : Randomizer
 
             }
         }
-        //float newX = (lastCreated.transform.position.x + lastCreated.transform.localScale.x);
-        //    float newY = (lastCreated.transform.position.y + lastCreated.transform.localScale.y);
-        //    Vector3 newPos = new Vector3(newX, newY, 0);
-        //    Debug.Log(newPos);
-        //    return newPos;
+
         Debug.Log("lastCreatedKloss: " + lastCreated.thisKloss.ToString());
         Debug.Log("xOffset: " + xOffset.ToString());
         Debug.Log("yOffset: " + yOffset.ToString());

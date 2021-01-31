@@ -5,12 +5,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 15f;
-    public Rigidbody2D rb;
+    public Rigidbody rb;
     public CharacterStats Stats;
     int damage = 12;
     void Start()
     {
-        rb.velocity = -transform.up * speed;
+        rb.velocity = transform.right * speed;
     }
 
     void OnTriggerEnter(Collider hitInfo)

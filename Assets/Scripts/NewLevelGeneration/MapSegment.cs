@@ -8,7 +8,8 @@ public class MapSegment : MonoBehaviour
     {
         largeLeftEnd, largeMiddleSingle, largeMiddleSingleW, largeRightEnd,
         largeToSmall, SmallLeftEnd, SmallLeftStaircaseW1, SmallMiddleSingle,
-        SmallMiddleSingleW, SmallRightEnd, SmallRightStaircase, SmallToLarge
+        SmallMiddleSingleW, SmallRightEnd, SmallRightStaircase, SmallToLarge, Elevator,
+        ElevatorPlusSmallToLarge, ElevatorPlusLargeToSmall
     }
 
     public GameObject[] objectsICanSpawn;
@@ -28,21 +29,31 @@ public class MapSegment : MonoBehaviour
     public IEnumerator SpawnRandom()
     {
         yield return new WaitForSeconds(0.5f);
-        //int x = Random.Range(0, 1);
-        int x = 0;
-        if(x == 0)
+        var gm = FindObjectOfType<GameManager1>();
+        if (!gm.terminalSpawned && (gm.roundNumber == 5 || gm.roundNumber == 10 
+            || gm.roundNumber == 15 || gm.roundNumber == 20 || gm.roundNumber == 25 || gm.roundNumber == 30))
         {
-            //items
-            int itemToSpawn = Random.Range(0, objectsICanSpawn.Length - 1);
-            GameObject g = Instantiate(objectsICanSpawn[itemToSpawn], spawnPoints[0].position, Quaternion.identity);
-            var t = g.GetComponent<PickableItem>();
-            t.Initialize();
+            GameObject g = Instantiate(objectsICanSpawn[2], spawnPoints[0].position, Quaternion.identity);
+            gm.terminalSpawned = true;
         }
         else
         {
-            //enemies
-            int enemyToSpawn = Random.Range(0, enemiesICanSpawn.Length - 1);
-            GameObject g = Instantiate(enemiesICanSpawn[enemyToSpawn], spawnPoints[0].position, Quaternion.identity);
+            int x = Random.Range(0, 20);
+            if (x == 19 || x == 18)
+            {
+                //items
+                int itemToSpawn = Random.Range(0, objectsICanSpawn.Length - 1);
+                GameObject g = Instantiate(objectsICanSpawn[itemToSpawn], spawnPoints[0].position, Quaternion.identity);
+                var t = g.GetComponent<PickableItem>();
+                t.Initialize();
+            }
+            else
+            {
+                //enemies
+                int enemyToSpawn = Random.Range(0, enemiesICanSpawn.Length - 1);
+                GameObject g = Instantiate(enemiesICanSpawn[enemyToSpawn], spawnPoints[0].position, Quaternion.identity);
+            }
+
         }
     }
 
@@ -72,5 +83,11 @@ public class MapSegment : MonoBehaviour
             thisKloss = Kloss.SmallRightStaircase;
         else if (klossname == "SmallToLargePrefab")
             thisKloss = Kloss.SmallToLarge;
+        else if (klossname == "Elevator")
+            thisKloss = Kloss.Elevator;
+        else if (klossname == "ElevatorPlusSmallToLarge")
+            thisKloss = Kloss.ElevatorPlusSmallToLarge;
+        else if (klossname == "ElevatorPlusLargeToSmall")
+            thisKloss = Kloss.ElevatorPlusLargeToSmall;
     }
 }

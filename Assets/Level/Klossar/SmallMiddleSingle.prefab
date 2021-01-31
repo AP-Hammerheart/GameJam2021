@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6879792509045042303}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2878235597359646134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3516077908233403756}
   - component: {fileID: 180639699975539984}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2035850468998747665}
   - component: {fileID: -3954728674304578089}
-  m_Layer: 0
+  - component: {fileID: -287647937147872100}
+  m_Layer: 8
   m_Name: SmallMiddleSingle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,10 +155,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsICanSpawn:
   - {fileID: 6040741128311923470, guid: 72ec771dbbe8b734ba46635666798bc8, type: 3}
+  - {fileID: 4780304177091794187, guid: b99ee2a1291c5784d876da38d3a19487, type: 3}
   enemiesICanSpawn: []
   spawnPoints:
   - {fileID: 2878235597359646134}
   thisKloss: 7
+--- !u!114 &-287647937147872100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4789069272180276692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430a02ad146db7c44b422d26d87088b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5464391518403606531
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4103673267168450772}
   - component: {fileID: 5221494310180270457}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +227,7 @@ GameObject:
   - component: {fileID: 5665257063444057916}
   - component: {fileID: 5665257063444057918}
   - component: {fileID: 5665257063444057919}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

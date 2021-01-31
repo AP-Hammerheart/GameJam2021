@@ -18,16 +18,17 @@ public class EnemyStats : CharacterStats
 
     public override void Die()
     {
-        //base.Die();
-        Rigidbody2D rigidbody;
-        rigidbody = GetComponent<Rigidbody2D>();
+        base.Die();
+        Rigidbody rigidbody;
+        rigidbody = GetComponent<Rigidbody>();
 
         //GetComponent<EnemyController>().enabled = false;
         //GetComponent<EnemyAttack>().enabled = false;
-        GetComponent<Collider2D>().enabled = false;
-        Destroy(rigidbody);
+        //GetComponent<Collider>().enabled = false;
+        //Destroy(rigidbody);
+        Destroy(gameObject);
 
-        DestroyObject(gameObject, 6);
+
 
     }
 }

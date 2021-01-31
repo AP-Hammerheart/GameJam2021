@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1623904117976438844}
   - component: {fileID: -2903707578395714531}
-  m_Layer: 0
+  - component: {fileID: 8326255988990987210}
+  m_Layer: 8
   m_Name: SmallLeftStaircaseW1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +47,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd102e63fc037c34ba06eb168d1cce2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsICanSpawn: []
+  enemiesICanSpawn: []
+  spawnPoints: []
+  thisKloss: 6
+--- !u!114 &8326255988990987210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8565867401646693837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430a02ad146db7c44b422d26d87088b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1655504540957846904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53,6 +70,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1623904117976438844}
     m_Modifications:
+    - target: {fileID: 9124295619917218863, guid: ea022c72325ff56418661e0e3f742f4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9124295620112088032, guid: ea022c72325ff56418661e0e3f742f4e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -101,6 +122,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor1x2LeftUpperEntry
       objectReference: {fileID: 0}
+    - target: {fileID: 9124295620112088038, guid: ea022c72325ff56418661e0e3f742f4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124295620362284927, guid: ea022c72325ff56418661e0e3f742f4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124295620503454567, guid: ea022c72325ff56418661e0e3f742f4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124295620965853603, guid: ea022c72325ff56418661e0e3f742f4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea022c72325ff56418661e0e3f742f4e, type: 3}
 --- !u!4 &7519192913414739608 stripped
@@ -118,6 +155,26 @@ PrefabInstance:
     - target: {fileID: 2361692414329169738, guid: 0316f74935065334593a8f94cf457c62, type: 3}
       propertyPath: m_Name
       value: CorridorWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361692414329169738, guid: 0316f74935065334593a8f94cf457c62, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982843928283357853, guid: 0316f74935065334593a8f94cf457c62, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183854537933002143, guid: 0316f74935065334593a8f94cf457c62, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296774935878209716, guid: 0316f74935065334593a8f94cf457c62, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879821058495782931, guid: 0316f74935065334593a8f94cf457c62, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9146969906257038479, guid: 0316f74935065334593a8f94cf457c62, type: 3}
       propertyPath: m_RootOrder
@@ -177,9 +234,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1623904117976438844}
     m_Modifications:
+    - target: {fileID: 1627355601278223958, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870800000490332362, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3870800000566812981, guid: 4160738407fc3504cad12d56be40da69, type: 3}
       propertyPath: m_Name
       value: Corridor1x2RightLowerEntry
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870800000566812981, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3870800000566812983, guid: 4160738407fc3504cad12d56be40da69, type: 3}
       propertyPath: m_RootOrder
@@ -224,6 +293,18 @@ PrefabInstance:
     - target: {fileID: 3870800000566812983, guid: 4160738407fc3504cad12d56be40da69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870800000672393558, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870800001614011880, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870800001721815827, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4160738407fc3504cad12d56be40da69, type: 3}

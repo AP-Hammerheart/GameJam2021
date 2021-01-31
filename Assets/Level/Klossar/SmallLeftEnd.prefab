@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 875029424577522331}
   - component: {fileID: 9188740516382476865}
-  m_Layer: 0
+  - component: {fileID: -5569600336056298945}
+  m_Layer: 8
   m_Name: SmallLeftEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,6 +56,18 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1324342406825806811}
   thisKloss: 0
+--- !u!114 &-5569600336056298945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835638634466964992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430a02ad146db7c44b422d26d87088b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3165167801757187277
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +77,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1324342406825806811}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +108,26 @@ PrefabInstance:
     - target: {fileID: 3559370059097799558, guid: 43facacd65493734db213df2a804c707, type: 3}
       propertyPath: m_Name
       value: CorridorBland (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559370059097799558, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091016919514021457, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4435012489087764819, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628104547531554015, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350895936562711672, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8021920442335875139, guid: 43facacd65493734db213df2a804c707, type: 3}
       propertyPath: m_RootOrder
@@ -158,6 +191,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: CorridorBland (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3559370059097799558, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091016919514021457, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4435012489087764819, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628104547531554015, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350895936562711672, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8021920442335875139, guid: 43facacd65493734db213df2a804c707, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -216,9 +269,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 875029424577522331}
     m_Modifications:
+    - target: {fileID: 252742343279139903, guid: 67ba66fa44b119f498ec1ee3fc064f43, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 489636410368453437, guid: 67ba66fa44b119f498ec1ee3fc064f43, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 730341601796938216, guid: 67ba66fa44b119f498ec1ee3fc064f43, type: 3}
       propertyPath: m_Name
       value: CorridorLeftEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 730341601796938216, guid: 67ba66fa44b119f498ec1ee3fc064f43, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332946913918210312, guid: 67ba66fa44b119f498ec1ee3fc064f43, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6058550716970791469, guid: 67ba66fa44b119f498ec1ee3fc064f43, type: 3}
       propertyPath: m_RootOrder
@@ -264,6 +333,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7162192150358027798, guid: 67ba66fa44b119f498ec1ee3fc064f43, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8898419571499228849, guid: 67ba66fa44b119f498ec1ee3fc064f43, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67ba66fa44b119f498ec1ee3fc064f43, type: 3}
 --- !u!4 &4443651084312616445 stripped
@@ -281,6 +358,26 @@ PrefabInstance:
     - target: {fileID: 3559370059097799558, guid: 43facacd65493734db213df2a804c707, type: 3}
       propertyPath: m_Name
       value: CorridorBland
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559370059097799558, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091016919514021457, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4435012489087764819, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628104547531554015, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350895936562711672, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8021920442335875139, guid: 43facacd65493734db213df2a804c707, type: 3}
       propertyPath: m_RootOrder
@@ -343,6 +440,26 @@ PrefabInstance:
     - target: {fileID: 3559370059097799558, guid: 43facacd65493734db213df2a804c707, type: 3}
       propertyPath: m_Name
       value: CorridorBland (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559370059097799558, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091016919514021457, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4435012489087764819, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628104547531554015, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350895936562711672, guid: 43facacd65493734db213df2a804c707, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8021920442335875139, guid: 43facacd65493734db213df2a804c707, type: 3}
       propertyPath: m_RootOrder

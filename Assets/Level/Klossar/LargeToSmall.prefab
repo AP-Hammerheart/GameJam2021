@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3882570740424494879}
   - component: {fileID: 5132746163982132921}
-  m_Layer: 0
+  - component: {fileID: 4388550122851474431}
+  m_Layer: 8
   m_Name: LargeToSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,10 +50,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsICanSpawn:
   - {fileID: 6040741128311923470, guid: 72ec771dbbe8b734ba46635666798bc8, type: 3}
+  - {fileID: 4780304177091794187, guid: b99ee2a1291c5784d876da38d3a19487, type: 3}
   enemiesICanSpawn: []
   spawnPoints:
   - {fileID: 3114365096359495106}
   thisKloss: 4
+--- !u!114 &4388550122851474431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4764062245424626329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430a02ad146db7c44b422d26d87088b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8027503832106382027
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3114365096359495106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,6 +104,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3882570740424494879}
     m_Modifications:
+    - target: {fileID: 832552213745009489, guid: 8ca9664437e15c84ea5c991485985819, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411156618624283638, guid: 8ca9664437e15c84ea5c991485985819, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4394578396158992234, guid: 8ca9664437e15c84ea5c991485985819, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -138,6 +160,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor1x2Bland (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7118598723182605487, guid: 8ca9664437e15c84ea5c991485985819, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739732629884809592, guid: 8ca9664437e15c84ea5c991485985819, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936309817558763130, guid: 8ca9664437e15c84ea5c991485985819, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ca9664437e15c84ea5c991485985819, type: 3}
 --- !u!4 &1681529945005782016 stripped
@@ -152,6 +186,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3882570740424494879}
     m_Modifications:
+    - target: {fileID: 1022165644039300183, guid: 7c849434c8d0475489bce8175b57e7c7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1600968751206110448, guid: 7c849434c8d0475489bce8175b57e7c7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2397802380271880395, guid: 7c849434c8d0475489bce8175b57e7c7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -196,9 +238,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8329819759265812955, guid: 7c849434c8d0475489bce8175b57e7c7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562209972275914457, guid: 7c849434c8d0475489bce8175b57e7c7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9182926062412210958, guid: 7c849434c8d0475489bce8175b57e7c7, type: 3}
       propertyPath: m_Name
       value: Corridor1x2Window
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182926062412210958, guid: 7c849434c8d0475489bce8175b57e7c7, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c849434c8d0475489bce8175b57e7c7, type: 3}
@@ -214,9 +268,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3882570740424494879}
     m_Modifications:
+    - target: {fileID: 1627355601278223958, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870800000490332362, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3870800000566812981, guid: 4160738407fc3504cad12d56be40da69, type: 3}
       propertyPath: m_Name
       value: Corridor1x2RightLowerEntry
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870800000566812981, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3870800000566812983, guid: 4160738407fc3504cad12d56be40da69, type: 3}
       propertyPath: m_RootOrder
@@ -261,6 +327,18 @@ PrefabInstance:
     - target: {fileID: 3870800000566812983, guid: 4160738407fc3504cad12d56be40da69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870800000672393558, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870800001614011880, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870800001721815827, guid: 4160738407fc3504cad12d56be40da69, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4160738407fc3504cad12d56be40da69, type: 3}
