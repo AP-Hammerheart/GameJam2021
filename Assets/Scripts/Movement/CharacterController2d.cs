@@ -24,8 +24,6 @@ public class CharacterController2d : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-
-
     private void FixedUpdate()
     {
         m_Grounded = false;
@@ -38,18 +36,14 @@ public class CharacterController2d : MonoBehaviour
                 m_Grounded = true;
 
            // anim.SetBool("isGrounded", m_Grounded);
-
         }
     }
-
 
     public void Move(float move, bool jump)
     {
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
-
-
             // Move the character by finding the target velocity
             Vector3 targetVelocity = new Vector3(move * 10f, m_Rigidbody.velocity.y, 0f);
             // And then smoothing it out and applying it to the character

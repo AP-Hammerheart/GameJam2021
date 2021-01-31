@@ -1,15 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : CharacterStats
 {
+    public bool gunPickedUp;
+    public bool swordPickedUp;
+
     public override void Awake()
     {
-
         base.Awake();
     }
-
 
     public override void TakeDamage(float TotalDamage)
     {
@@ -22,9 +24,15 @@ public class PlayerStats : CharacterStats
         anim.SetBool("dead", true);
         anim.SetTrigger("die");
         base.Die();
-
-
-        // Respawn after time, regenerate the map
     }
 
+    public void PickUpGUN()
+    {
+        gunPickedUp = true;
+    }
+
+    public void PickUpSWORD()
+    {
+        swordPickedUp = true;
+    }
 }

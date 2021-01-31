@@ -6,14 +6,17 @@ public class PickableItem : MonoBehaviour
 {
     private SphereCollider sphColl;
     private SpriteRenderer render;
-    private string Item;
+    public string Item;
     public Sprite[] sprites;
+    public bool test;
 
     private void Awake()
     {
         sphColl = GetComponent<SphereCollider>();
         render = GetComponent<SpriteRenderer>();
         Item = "";
+        if (test)
+            Initialize();
     }
 
     public void Initialize()
@@ -41,14 +44,18 @@ public class PickableItem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Collllliiiided with plaaayuer");
+
             PlayerStats playerStats = other.gameObject.GetComponent<PlayerStats>();
 
             if (Item == "GUN")
             {
+                Debug.Log("GUN PICKED UPPPPP");
                 playerStats.PickUpGUN();
             }
             if (Item == "SWORD")
             {
+                Debug.Log("SWORD PICKED UPPPPP");
                 playerStats.PickUpSWORD();
             }
         }
