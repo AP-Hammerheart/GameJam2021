@@ -8,7 +8,8 @@ public class MapSegment : MonoBehaviour
     {
         largeLeftEnd, largeMiddleSingle, largeMiddleSingleW, largeRightEnd,
         largeToSmall, SmallLeftEnd, SmallLeftStaircaseW1, SmallMiddleSingle,
-        SmallMiddleSingleW, SmallRightEnd, SmallRightStaircase, SmallToLarge
+        SmallMiddleSingleW, SmallRightEnd, SmallRightStaircase, SmallToLarge, Elevator,
+        ElevatorPlusSmallToLarge, ElevatorPlusLargeToSmall
     }
 
     public GameObject[] objectsICanSpawn;
@@ -72,5 +73,11 @@ public class MapSegment : MonoBehaviour
             thisKloss = Kloss.SmallRightStaircase;
         else if (klossname == "SmallToLargePrefab")
             thisKloss = Kloss.SmallToLarge;
+        else if (klossname == "Elevator")
+            thisKloss = Kloss.Elevator;
+        else if (klossname == "ElevatorPlusSmallToLarge")
+            thisKloss = Kloss.ElevatorPlusSmallToLarge;
+        else if (klossname == "ElevatorPlusLargeToSmall")
+            thisKloss = Kloss.ElevatorPlusLargeToSmall;
     }
 }

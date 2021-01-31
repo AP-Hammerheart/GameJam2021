@@ -55,7 +55,12 @@ MonoBehaviour:
   SmallRightEndPrefab: {fileID: -6274688372473751425, guid: 297d372630fbf43459335c850e65e7a8, type: 3}
   SmallRightStaircasePrefab: {fileID: 84031568878562720, guid: 947a5ae942eb6ad49a6bd2743cc1f6df, type: 3}
   SmallToLargePrefab: {fileID: -5412307354546856421, guid: 4cf5134f2c7f47e458cb83694b83e47f, type: 3}
+  Elevator: {fileID: 4558857823840284406, guid: c8f676caaca6e4644821ef83c5e2e90f, type: 3}
+  ElevatorPlusLargeToSmall: {fileID: 8636202964333103742, guid: e419880ff9a106f4b8c4ed81c44f9fc5, type: 3}
+  ElevatorPlusSmallToLarge: {fileID: 2470313481922147713, guid: f593b38e194c2774fb6969c04e333480, type: 3}
+  nextKlossString: 
   lastCreated: {fileID: 0}
+  NextKloss: {fileID: 0}
   mapSegmentPrefabs:
   - {fileID: -5665643719106408790, guid: 195b9d76048833b4e9ee97f34b4358d0, type: 3}
   - {fileID: 859503846244166817, guid: b6933b9be71edbf449bf29d59cab8af2, type: 3}
