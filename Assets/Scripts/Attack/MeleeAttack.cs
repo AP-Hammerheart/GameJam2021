@@ -37,7 +37,7 @@ public class MeleeAttack : MonoBehaviour
             if (CooldownCurrent <= 0)
             {
                 anim.SetTrigger("MeleeAttack");
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(AttackPos.position, AttackRadius, WhatIsEnemies);
+                Collider[] enemiesToDamage = Physics.OverlapSphere(AttackPos.position, AttackRadius, WhatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
 

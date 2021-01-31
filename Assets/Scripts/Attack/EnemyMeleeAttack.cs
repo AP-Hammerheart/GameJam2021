@@ -14,6 +14,8 @@ public class EnemyMeleeAttack : MonoBehaviour
     public float AttackRadius = 3f;
     // public Animator anim;
     Transform target;
+    public GameObject MeleeAnim;
+    public Transform MeleeAnimPos;
 
     void Awake()
     {
@@ -29,13 +31,21 @@ public class EnemyMeleeAttack : MonoBehaviour
 
     public void MeleeAttackAction()
     {
+
         //anim.SetTrigger("Attack");
         // Debug.Log("Melee ATTAAAACK");
         if (CooldownCurrent <= 0)
         {
-            Collider2D enemiesToDamage = Physics2D.OverlapCircle(AttackPos.position, AttackRadius, WhatIsEnemies);
-            if(enemiesToDamage)
-            enemiesToDamage.GetComponent<CharacterStats>().TakeDamage(Stats.TotalDamage);
+            var t = Instantiate(MeleeAnim, MeleeAnimPos);
+            Vector3 newSize = new Vector3(t.transform.localScale.x * 3, t.transform.localScale.x * 3, t.transform.localScale.x * 3);
+            t.transform.localScale = newSize;
+            t.transform.parent = transform;
+            Collider [] enemiesToDamage = Physics.OverlapSphere(AttackPos.position, AttackRadius, WhatIsEnemies);
+            for (int i = 0; i < enemiesToDamage.Length; i++)
+            {
+
+                enemiesToDamage[0].GetComponent<CharacterStats>().TakeDamage(Stats.TotalDamage);
+            }
             CooldownCurrent = Cooldown;
         }
 

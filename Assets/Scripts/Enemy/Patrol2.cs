@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Patrol2 : MonoBehaviour
 {
-    float range = 3f;
+    public float range = 3f;
     public float speed = 1f;
-    bool facingRight = true;
+    public bool facingRight = true;
     Vector3 p;
     public float coolDownValue = 5f;
     public float coolDown = 0;
@@ -16,6 +16,7 @@ public class Patrol2 : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
         p = transform.position;
         rb = GetComponent<Rigidbody>();
     }
@@ -53,12 +54,12 @@ public class Patrol2 : MonoBehaviour
     private void Flip()
     {
         // Switch the way the player is labelled as facing.
+        if (facingRight == true)
+            transform.eulerAngles = new Vector3(0, -180, 0);
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
         facingRight = !facingRight;
-
-        // Multiply the player's x local scale by -1.
-        //Vector3 theScale = transform.localScale;
-        //theScale.x *= -1;
-        //transform.localScale = theScale;
-        transform.eulerAngles = new Vector3(0, -180, 0);
     }
 }
