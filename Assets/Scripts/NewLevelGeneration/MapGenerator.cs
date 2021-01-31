@@ -31,7 +31,7 @@ public class MapGenerator : Randomizer
     #endregion
 
 
-
+    public string nextKlossString;
     public MapSegment lastCreated;
     public MapSegment NextKloss;
     public MapSegment[] mapSegmentPrefabs;
@@ -80,11 +80,11 @@ public class MapGenerator : Randomizer
 
     private MapSegment CreateMapSegment()
     {
+        DetermineNextKloss();
         whereToSpawn = DetermineNextSpawnPosition();
-        NextKloss =  DetermineNextKloss();
         Debug.Log(NextKloss);
         MapSegment ms = Instantiate(NextKloss, whereToSpawn, Quaternion.identity);
-        ms.SetKloss(nameof(NextKloss));
+        ms.SetKloss(nextKlossString);
         ms.name = $"MapSegment {nameof(NextKloss)} : " + NextKloss.transform.position;
         ms.transform.parent = transform;
         allSegments.Add(ms);
@@ -101,16 +101,40 @@ public class MapGenerator : Randomizer
             CreateMapSegment();
     }
 
+    private void CreateLastMapSegment()
+    {
+        whereToSpawn = DetermineNextSpawnPosition();
+        MapSegment ms = Instantiate(DetermineLastKloss(), whereToSpawn, Quaternion.identity);
+        ms.SetKloss(nextKlossString);
+        ms.transform.parent = transform;
+        allSegments.Add(ms);
+        //UpdateNextPos(ms);
+        lastCreated = ms;
+    }
+
+    private MapSegment DetermineLastKloss()
+    {
+        if (dir == Direction.Right)
+        {
+            nextKlossString = "SmallToLargePrefab";
+            return SmallToLargePrefab;
+        }
+        else
+        {
+            nextKlossString = "largeToSmallPrefab";
+            return largeToSmallPrefab;
+        }
+    }
+
     private MapSegment CreateFirstMapSegment(Vector3 pos, MapSegment largeLeftEndPrefab)
     {
         MapSegment ms = Instantiate(DetermineFirstKloss(), pos, Quaternion.identity);
-        ms.SetKloss(nameof(largeLeftEndPrefab));
+        ms.SetKloss(nextKlossString);
         ms.name = "MapSegment: " + pos;
         ms.transform.parent = transform;
         allSegments.Add(ms);
         //UpdateNextPos(ms);
         lastCreated = ms;
-        NextKloss = DetermineNextKloss();
         return ms;
     }
 
@@ -136,7 +160,7 @@ public class MapGenerator : Randomizer
         {
             //tdodo
         }
-        CreateMapSegment();
+        CreateLastMapSegment();
         //if (dir == Direction.Right)
         //    CreateMapSegment(DetermineNextSpawnPosition(), largeLeftEndPrefab);
 
@@ -147,15 +171,21 @@ public class MapGenerator : Randomizer
     private MapSegment DetermineFirstKloss()
     {
         if (dir == Direction.Right)
+        {
+            nextKlossString = "SmallToLargePrefab";
             return SmallToLargePrefab;
+        }
         else
+        {
+            nextKlossString = "largeToSmallPrefab";
             return largeToSmallPrefab;
+        }
     }
 
     private Vector3 DetermineNextSpawnPosition()
     {
-        float xOffset = 0;
-        float yOffset = 0;
+        float xOffset = 0f;
+        float yOffset = 0f;
         var _kloss = lastCreated.thisKloss;
         if (lastCreated.thisKloss == Kloss.largeLeftEnd)
         {
@@ -408,85 +438,173 @@ public class MapGenerator : Randomizer
         Debug.Log("lastCreatedKloss: " + lastCreated.thisKloss.ToString());
         Debug.Log("xOffset: " + xOffset.ToString());
         Debug.Log("yOffset: " + yOffset.ToString());
-        float newX = lastCreated.transform.position.x + xOffset;
-        float newY = lastCreated.transform.position.y + yOffset;
-        Vector3 nextPos = new Vector3(newX, newY, 0);
+        float newX = lastCreated.transform.position.x;
+        float newY = lastCreated.transform.position.y;
+        Vector3 nextPos = new Vector3(newX+ xOffset, newY+yOffset, 0);
         Debug.Log(nextPos);
         return nextPos;
     }
     private MapSegment DetermineNextKloss()
     {
+        NextKloss = new MapSegment();
         if (lastCreated.thisKloss == MapSegment.Kloss.SmallToLarge)
         {
             if (dir == Direction.Right)
             {
-                int x = UnityEngine.Random.Range(1, 7);
+                int x = UnityEngine.Random.Range(1, 6);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss.SetKloss("largeToSmallPrefab");
+                    NextKloss = largeToSmallPrefab;
                     return largeToSmallPrefab;
-                if (x == 2 || x == 5)//LargeMiddleSingleW
+                }
+                if (x == 2 || x == 4)
+                {
+                    nextKlossString = "largeMiddleSingleWPrefab";
+                    NextKloss.SetKloss("largeMiddleSingleWPrefab");
+                    NextKloss = largeMiddleSingleWPrefab;
                     return largeMiddleSingleWPrefab;
-                if (x == 3 || x == 6)//LargeMiddleSingle
+                }
+                if (x == 3 || x == 5)             
+                {
+                    nextKlossString = "largeMiddleSinglePrefab";
+                    NextKloss.SetKloss("largeMiddleSinglePrefab");
+                    NextKloss = largeMiddleSinglePrefab;
                     return largeMiddleSinglePrefab;
-                if (x == 4)//LargeRightEnd
-                    return largeRightEndPrefab;
+                }
             }
             else
             {
-                int x = UnityEngine.Random.Range(1, 11);
+                int x = UnityEngine.Random.Range(1, 10);
 
-                if (x == 1)//smallMiddleSingle
+                if (x == 1) 
+                {
+                    nextKlossString = "SmallMiddleSinglePrefab";
+                    NextKloss.SetKloss("SmallMiddleSinglePrefab");
+                    NextKloss = SmallMiddleSinglePrefab;
                     return SmallMiddleSinglePrefab;
-                if (x == 2 || x == 5)//LargeMiddleSingleW
-                    return SmallMiddleSinglePrefab;
-                if (x == 3 || x == 6)//LargeMiddleSingle
+                }
+                if (x == 2 || x == 5)
+                {
+                    nextKlossString = "largeMiddleSingleWPrefab";
+                    NextKloss.SetKloss("largeMiddleSingleWPrefab");
+                    NextKloss = largeMiddleSingleWPrefab;
+                    return largeMiddleSingleWPrefab;
+                }
+
+                if (x == 3 || x == 6)
+                {
+                    nextKlossString = "SmallMiddleSingleWPrefab";
+                    NextKloss.SetKloss("SmallMiddleSingleWPrefab");
+                    NextKloss = SmallMiddleSingleWPrefab;
                     return SmallMiddleSingleWPrefab;
-                if (x == 4)//LargeRightEnd
-                    return SmallLeftEndPrefab;
-                if (x == 7)//SmallLeftStaircaseW1
+                }
+                if (x == 7)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
+                    NextKloss = SmallRightStaircasePrefab;
                     return SmallRightStaircasePrefab;
-                if (x == 10)//SmallLeftStaircaseW1
+                }
+                if (x == 4)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab";
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
+                    NextKloss = SmallLeftStaircaseW1Prefab;
                     return SmallLeftStaircaseW1Prefab;
-                if (x == 8 || x == 9)//LargeToSmall
+                }
+                if (x == 8 || x == 9)
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
+                    NextKloss = largeToSmallPrefab;
                     return largeToSmallPrefab;
+                }
             }
         }
         if (lastCreated.thisKloss == MapSegment.Kloss.SmallRightStaircase)
         {
             if (dir == Direction.Right)
             {
-                int x = UnityEngine.Random.Range(1, 8);
+                int x = UnityEngine.Random.Range(1, 7);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss = largeToSmallPrefab;
+                    NextKloss.SetKloss("largeToSmallPrefab");
                     return largeToSmallPrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss = SmallRightStaircasePrefab;
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
                     return SmallRightStaircasePrefab;
-                if (x == 3)//LargeToSmall
-                    return SmallRightEndPrefab;
-                if (x == 4)//LargeToSmall
+                }
+                if (x == 4)
+                {
+                    nextKlossString = "SmallMiddleSinglePrefab";
+                    NextKloss = SmallMiddleSinglePrefab;
+                    NextKloss.SetKloss("SmallMiddleSinglePrefab");
                     return SmallMiddleSinglePrefab;
-                if (x == 5)//LargeToSmall
+                }
+                if (x == 5)
+                {
+                    nextKlossString = "SmallMiddleSingleWPrefab";
+                    NextKloss = SmallMiddleSingleWPrefab;
+                    NextKloss.SetKloss("SmallMiddleSingleWPrefab");
                     return SmallMiddleSingleWPrefab;
-                if (x == 6 || x == 7)//LargeToSmall
+                }
+                if (x == 6 || x == 3)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab"; 
+                    NextKloss = SmallLeftStaircaseW1Prefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
                     return SmallLeftStaircaseW1Prefab;
-
+                }
             }
             else
             {
                 int x = UnityEngine.Random.Range(1, 7);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss = largeToSmallPrefab;
+                    NextKloss.SetKloss("largeToSmallPrefab");
                     return largeToSmallPrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss = SmallRightStaircasePrefab;
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
                     return SmallRightStaircasePrefab;
-                if (x == 3)//LargeToSmall
+                }
+                if (x == 3)
+                {
+                    nextKlossString = "SmallMiddleSinglePrefab";
+                    NextKloss = SmallMiddleSinglePrefab;
+                    NextKloss.SetKloss("SmallMiddleSinglePrefab");
                     return SmallMiddleSinglePrefab;
-                if (x == 4)//LargeToSmall
+                }
+                if (x == 4)
+                {
+                    nextKlossString = "SmallMiddleSingleWPrefab";
+                    NextKloss = SmallMiddleSingleWPrefab;
+                    NextKloss.SetKloss("SmallMiddleSingleWPrefab");
                     return SmallMiddleSingleWPrefab;
-                if (x == 5)//LargeToSmall
+                }
+                if (x == 6)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab";
+                    NextKloss = SmallLeftStaircaseW1Prefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
                     return SmallLeftStaircaseW1Prefab;
-                if (x == 6)//LargeToSmall
-                    return SmallLeftEndPrefab;
+                }
             }
         }
         if (lastCreated.thisKloss == MapSegment.Kloss.SmallRightEnd)
@@ -497,182 +615,387 @@ public class MapGenerator : Randomizer
             {
                 int x = UnityEngine.Random.Range(1, 6);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss = SmallRightStaircasePrefab;
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
                     return SmallRightStaircasePrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "SmallMiddleSinglePrefab";
+                    NextKloss = SmallMiddleSinglePrefab;
+                    NextKloss.SetKloss("SmallMiddleSinglePrefab");
                     return SmallMiddleSinglePrefab;
-                if (x == 3)//LargeToSmall
+                }
+                if (x == 3)
+                {
+                    nextKlossString = "SmallMiddleSingleWPrefab";
+                    NextKloss = SmallMiddleSingleWPrefab;
+                    NextKloss.SetKloss("SmallMiddleSingleWPrefab");
                     return SmallMiddleSingleWPrefab;
-                if (x == 4)//LargeToSmall
+                }
+                if (x == 4)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab";
+                    NextKloss = SmallLeftStaircaseW1Prefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
                     return SmallLeftStaircaseW1Prefab;
-                if (x == 5)//LargeToSmall
+                }
+                if (x == 5)
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss = largeToSmallPrefab;
+                    NextKloss.SetKloss("largeToSmallPrefab");
                     return largeToSmallPrefab;
-
+                }
             }
         }
         if (lastCreated.thisKloss == MapSegment.Kloss.SmallMiddleSingleW)
         {
             if (dir == Direction.Right)
             {
-                int x = UnityEngine.Random.Range(1, 8);
+                int x = UnityEngine.Random.Range(1, 7);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "SmallMiddleSinglePrefab";
+                    NextKloss = SmallMiddleSinglePrefab;
+                    NextKloss.SetKloss("SmallMiddleSinglePrefab");
                     return SmallMiddleSinglePrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallToLargePrefab");
                     return SmallToLargePrefab;
-                if (x == 3)//LargeToSmall
+                }
+                if (x == 3)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss = SmallRightStaircasePrefab;
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
                     return SmallRightStaircasePrefab;
-                if (x == 4)//LargeToSmall
-                    return SmallRightEndPrefab;
-                if (x == 5)//LargeToSmall
+                }
+                if (x == 5)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab";
+                    NextKloss = SmallLeftStaircaseW1Prefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
                     return SmallLeftStaircaseW1Prefab;
-                if (x == 6 || x == 7)//LargeToSmall
-                    return SmallLeftStaircaseW1Prefab;
+                }
+                if (x == 6 || x == 4)
+                {
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallToLargePrefab");
+                    return SmallToLargePrefab;
+                }
             }
             else
             {
-                int x = UnityEngine.Random.Range(1, 6);
+                int x = UnityEngine.Random.Range(1, 54);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "SmallMiddleSinglePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallMiddleSinglePrefab");
                     return SmallMiddleSinglePrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss = SmallRightStaircasePrefab;
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
                     return SmallRightStaircasePrefab;
-                if (x == 3)//LargeToSmall
-                    return SmallLeftEndPrefab;
-                if (x == 4)//LargeToSmall
+                }
+                if (x == 4)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab";
+                    NextKloss = SmallLeftStaircaseW1Prefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
                     return SmallLeftStaircaseW1Prefab;
-                if (x == 5)//LargeToSmall
+                }
+                if (x == 3)
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss = largeToSmallPrefab;
+                    NextKloss.SetKloss("largeToSmallPrefab");
                     return largeToSmallPrefab;
+                }
             }
         }
         if (lastCreated.thisKloss == MapSegment.Kloss.SmallMiddleSingle)
         {
             if (dir == Direction.Right)
             {
-                int x = UnityEngine.Random.Range(1, 8);
+                int x = UnityEngine.Random.Range(1, 7);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "SmallMiddleSingleWPrefab";
+                    NextKloss = SmallMiddleSingleWPrefab;
+                    NextKloss.SetKloss("SmallMiddleSingleWPrefab");
                     return SmallMiddleSingleWPrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallToLargePrefab");
                     return SmallToLargePrefab;
-                if (x == 3)//LargeToSmall
+                }
+                if (x == 3)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss = SmallRightStaircasePrefab;
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
                     return SmallRightStaircasePrefab;
-                if (x == 4)//LargeToSmall
-                    return SmallRightEndPrefab;
-                if (x == 5)//LargeToSmall
+                }
+                if (x == 5)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab";
+                    NextKloss = SmallLeftStaircaseW1Prefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
                     return SmallLeftStaircaseW1Prefab;
-                if (x == 6 || x == 7)//LargeToSmall
-                    return SmallLeftStaircaseW1Prefab;
+                }
+                if (x == 6 || x == 4)
+                {
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
+                    return SmallToLargePrefab;
+                }
             }
             else
             {
-                int x = UnityEngine.Random.Range(1, 6);
+                int x = UnityEngine.Random.Range(1, 5);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "SmallMiddleSingleWPrefab";
+                    NextKloss = SmallMiddleSingleWPrefab;
+                    NextKloss.SetKloss("SmallMiddleSingleWPrefab");
                     return SmallMiddleSingleWPrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss = SmallRightStaircasePrefab;
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
                     return SmallRightStaircasePrefab;
-                if (x == 3)//LargeToSmall
-                    return SmallLeftEndPrefab;
-                if (x == 4)//LargeToSmall
+                }
+                if (x == 4)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab";
+                    NextKloss = SmallLeftStaircaseW1Prefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
                     return SmallLeftStaircaseW1Prefab;
-                if (x == 5)//LargeToSmall
+                }
+                if (x ==3)
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss = largeToSmallPrefab;
+                    NextKloss.SetKloss("largeToSmallPrefab");
                     return largeToSmallPrefab;
+                }
+
             }
         }
         if (lastCreated.thisKloss == MapSegment.Kloss.SmallLeftStaircaseW1)
         {
             if (dir == Direction.Right)
             {
-                int x = UnityEngine.Random.Range(1, 8);
+                int x = UnityEngine.Random.Range(1, 7);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallToLargePrefab");
                     return SmallToLargePrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss = SmallRightStaircasePrefab;
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
                     return SmallRightStaircasePrefab;
-                if (x == 3)//LargeToSmall
-                    return SmallRightEndPrefab;
-                if (x == 4)//LargeToSmall
+                }
+                if (x == 4)
+                {
+                    nextKlossString = "SmallMiddleSinglePrefab";
+                    NextKloss = SmallMiddleSinglePrefab;
+                    NextKloss.SetKloss("SmallMiddleSinglePrefab");
                     return SmallMiddleSinglePrefab;
-                if (x == 5)//LargeToSmall
+                }
+                if (x == 5)
+                {
+                    nextKlossString = "SmallMiddleSingleWPrefab";
+                    NextKloss = SmallMiddleSingleWPrefab;
+                    NextKloss.SetKloss("SmallMiddleSingleWPrefab");
                     return SmallMiddleSingleWPrefab;
-                if (x == 6 || x == 7)//LargeToSmall
+                }
+                if (x == 6 || x ==3)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab";
+                    NextKloss = SmallLeftStaircaseW1Prefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
                     return SmallLeftStaircaseW1Prefab;
+                }
             }
             else
             {
                 int x = UnityEngine.Random.Range(1, 6);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss = SmallRightStaircasePrefab;
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
                     return SmallRightStaircasePrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "SmallMiddleSinglePrefab";
+                    NextKloss = SmallMiddleSinglePrefab;
+                    NextKloss.SetKloss("SmallMiddleSinglePrefab");
                     return SmallMiddleSinglePrefab;
-                if (x == 3)//LargeToSmall
+                }
+                if (x == 3)
+                {
+                    nextKlossString = "SmallMiddleSingleWPrefab";
+                    NextKloss = SmallMiddleSingleWPrefab;
+                    NextKloss.SetKloss("SmallMiddleSingleWPrefab");
                     return SmallMiddleSingleWPrefab;
-                if (x == 4)//LargeToSmall
+                }
+                if (x == 4)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab";
+                    NextKloss = SmallLeftStaircaseW1Prefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
                     return SmallLeftStaircaseW1Prefab;
-                if (x == 5)//LargeToSmall
+                }
+                if (x == 5)
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss = largeToSmallPrefab;
+                    NextKloss.SetKloss("largeToSmallPrefab");
                     return largeToSmallPrefab;
+                }
             }
         }
         if (lastCreated.thisKloss == MapSegment.Kloss.largeToSmall)
         {
             if (dir == Direction.Right)
             {
-                int x = UnityEngine.Random.Range(1, 9);
+                int x = UnityEngine.Random.Range(1, 7);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallToLargePrefab");
                     return SmallToLargePrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "SmallRightStaircasePrefab";
+                    NextKloss = SmallRightStaircasePrefab;
+                    NextKloss.SetKloss("SmallRightStaircasePrefab");
                     return SmallRightStaircasePrefab;
-                if (x == 3)//LargeToSmall
-                    return SmallRightEndPrefab;
-                if (x == 4)//LargeToSmall
+                }
+                if (x == 4)
+                {
+                    nextKlossString = "SmallMiddleSinglePrefab";
+                    NextKloss = SmallMiddleSinglePrefab;
+                    NextKloss.SetKloss("SmallMiddleSinglePrefab");
                     return SmallMiddleSinglePrefab;
-                if (x == 5)//LargeToSmall
+                }
+                if (x == 5)
+                {
+                    nextKlossString = "SmallMiddleSingleWPrefab";
+                    NextKloss = SmallMiddleSingleWPrefab;
+                    NextKloss.SetKloss("SmallMiddleSingleWPrefab");
                     return SmallMiddleSingleWPrefab;
-                if (x == 6 || x == 7)//LargeToSmall
+                }
+                if (x == 6 || x == 3)
+                {
+                    nextKlossString = "SmallLeftStaircaseW1Prefab";
+                    NextKloss = SmallLeftStaircaseW1Prefab;
+                    NextKloss.SetKloss("SmallLeftStaircaseW1Prefab");
                     return SmallLeftStaircaseW1Prefab;
-                if (x == 8)//LargeToSmall
-                    return SmallLeftEndPrefab;
+                }
             }
             else
             {
-                int x = UnityEngine.Random.Range(1, 5);
+                int x = UnityEngine.Random.Range(1, 4);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallToLargePrefab");
                     return SmallToLargePrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "largeMiddleSingleWPrefab";
+                    NextKloss = largeMiddleSingleWPrefab;
+                    NextKloss.SetKloss("largeMiddleSingleWPrefab");
                     return largeMiddleSingleWPrefab;
-                if (x == 3)//LargeToSmall
+                }
+                if (x == 3)
+                {
+                    nextKlossString = "largeMiddleSinglePrefab";
+                    NextKloss = largeMiddleSinglePrefab;
+                    NextKloss.SetKloss("largeMiddleSinglePrefab");
                     return largeMiddleSinglePrefab;
-                if (x == 4)//LargeToSmall
-                    return largeLeftEndPrefab;
+                }
             }
         }
         if (lastCreated.thisKloss == MapSegment.Kloss.largeMiddleSingleW)
         {
             if (dir == Direction.Right)
             {
-                int x = UnityEngine.Random.Range(1, 4);
+                int x = UnityEngine.Random.Range(1, 3);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "largeMiddleSinglePrefab";
+                    NextKloss = largeMiddleSinglePrefab;
+                    NextKloss.SetKloss("largeMiddleSinglePrefab");
                     return largeMiddleSinglePrefab;
-                if (x == 2)//LargeToSmall
-                    return largeRightEndPrefab;
-                else//LargeToSmall
+                }
+                else
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss = largeToSmallPrefab;
+                    NextKloss.SetKloss("largeToSmallPrefab");
                     return largeToSmallPrefab;
+                }
             }
             else
             {
-                int x = UnityEngine.Random.Range(1, 4);
+                int x = UnityEngine.Random.Range(1, 3);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "largeMiddleSinglePrefab";
+                    NextKloss = largeMiddleSinglePrefab;
+                    NextKloss.SetKloss("largeMiddleSinglePrefab");
                     return largeMiddleSinglePrefab;
-                if (x == 2)//LargeToSmall
-                    return largeLeftEndPrefab;
-                else//LargeToSmall
+                }
+                else
+                {
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallToLargePrefab");
                     return SmallToLargePrefab;
+                }
             }
         }
         if (lastCreated.thisKloss == MapSegment.Kloss.largeRightEnd)
@@ -683,37 +1006,68 @@ public class MapGenerator : Randomizer
             {
                 int x = UnityEngine.Random.Range(1, 4);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "largeMiddleSinglePrefab";
+                    NextKloss = largeMiddleSinglePrefab;
+                    NextKloss.SetKloss("largeMiddleSinglePrefab");
                     return largeMiddleSinglePrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "largeMiddleSingleWPrefab";
+                    NextKloss = largeMiddleSingleWPrefab;
+                    NextKloss.SetKloss("largeMiddleSingleWPrefab");
                     return largeMiddleSingleWPrefab;
-                else//LargeToSmall
+                }
+                else
+                {
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallToLargePrefab");
                     return SmallToLargePrefab;
+                }
             }
         }
         if (lastCreated.thisKloss == MapSegment.Kloss.largeMiddleSingle)
         {
             if (dir == Direction.Right)
             {
-                int x = UnityEngine.Random.Range(1, 4);
+                int x = UnityEngine.Random.Range(1, 3);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "largeMiddleSingleWPrefab";
+                    NextKloss = largeMiddleSingleWPrefab;
+                    NextKloss.SetKloss("largeMiddleSingleWPrefab");
                     return largeMiddleSingleWPrefab;
-                if (x == 2)//LargeToSmall
-                    return largeRightEndPrefab;
-                else//LargeToSmall
+                }
+                else
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss = largeToSmallPrefab;
+                    NextKloss.SetKloss("largeToSmallPrefab");
                     return largeToSmallPrefab;
+                }
             }
             else
             {
-                int x = UnityEngine.Random.Range(1, 4);
+                int x = UnityEngine.Random.Range(1, 3);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "largeMiddleSingleWPrefab";
+                    NextKloss = largeMiddleSingleWPrefab;
+                    NextKloss.SetKloss("largeMiddleSingleWPrefab");
                     return largeMiddleSingleWPrefab;
-                if (x == 2)//LargeToSmall
-                    return largeLeftEndPrefab;
-                else//LargeToSmall
+                }
+                else
+                {
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallToLargePrefab");
                     return SmallToLargePrefab;
+                }
             }
 
         }
@@ -723,14 +1077,34 @@ public class MapGenerator : Randomizer
             {
                 int x = UnityEngine.Random.Range(1, 5);
 
-                if (x == 1)//LargeToSmall
+                if (x == 1)
+                {
+                    nextKlossString = "largeMiddleSingleWPrefab";
+                    NextKloss = largeMiddleSingleWPrefab;
+                    NextKloss.SetKloss("largeMiddleSingleWPrefab");
                     return largeMiddleSingleWPrefab;
-                if (x == 2)//LargeToSmall
+                }
+                if (x == 2)
+                {
+                    nextKlossString = "largeMiddleSinglePrefab";
+                    NextKloss = largeMiddleSinglePrefab;
+                    NextKloss.SetKloss("largeMiddleSinglePrefab");
                     return largeMiddleSinglePrefab;
-                if (x == 3)//LargeToSmall
+                }
+                if (x == 3)
+                {
+                    nextKlossString = "largeToSmallPrefab";
+                    NextKloss = largeToSmallPrefab;
+                    NextKloss.SetKloss("largeToSmallPrefab");
                     return largeToSmallPrefab;
-                if (x == 4)//LargeToSmall
+                }
+                if (x == 4)
+                {
+                    nextKlossString = "largeMiddleSinglePrefab";
+                    NextKloss = largeMiddleSinglePrefab;
+                    NextKloss.SetKloss("largeMiddleSinglePrefab");
                     return largeMiddleSinglePrefab;
+                }
                 else
                     return null;
             }

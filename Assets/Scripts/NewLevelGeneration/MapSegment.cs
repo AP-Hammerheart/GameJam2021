@@ -11,10 +11,18 @@ public class MapSegment : MonoBehaviour
         SmallMiddleSingleW, SmallRightEnd, SmallRightStaircase, SmallToLarge
     }
 
+    public GameObject[] objectsICanSpawn;
+    public Transform[] spawnPoints;
+
     public Kloss thisKloss;
-    //private void Start()
+    private void Start()
+    {
+        thisKloss = new Kloss();
+    }
+
+    //public GameObject SpawnRandom()
     //{
-    //    thisKloss = new Kloss();
+    //    gameObject g = Instantiate
     //}
 
     public void SetKloss(string klossname)
