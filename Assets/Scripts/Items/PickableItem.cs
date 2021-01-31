@@ -60,6 +60,6 @@ public class PickableItem : MonoBehaviour
             }
         }
 
-        Destroy(gameObject, 1);
+        Destroy(gameObject);
     }
 }
