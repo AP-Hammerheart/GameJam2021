@@ -26,7 +26,7 @@ public class GenerateFloor : MonoBehaviour
         position.y += collection.entries[0].availableConnections[nextBlockAvailableBlockIndex].yIncrement;
         yield return new WaitForEndOfFrame();
 
-        for( int i = 0; i < 10; i++ ) {
+        for( int i = 0; i < 100; i++ ) {
             g = Instantiate( collection.entries[index].block, position, Quaternion.identity, transform );
             nextBlockAvailableBlockIndex = Random.Range( 0, collection.entries[index].availableConnections.Length - 1 );
             position.x += xSpacing;
