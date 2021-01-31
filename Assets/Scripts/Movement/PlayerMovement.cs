@@ -13,6 +13,12 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     public bool jump = false;
 
+    private void Start()
+    {
+        Camera t = FindObjectOfType<Camera>();
+        t.GetComponent<CameraFollow>().target = gameObject.transform;
+
+    }
 
     // Update is called once per frame
     void Update()

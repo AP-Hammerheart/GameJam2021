@@ -25,6 +25,7 @@ public class RangedAttack : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
+        GameObject t = Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
+        Destroy(t, 1);
     }
 }

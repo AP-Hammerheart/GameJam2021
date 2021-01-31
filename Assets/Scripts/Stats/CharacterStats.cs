@@ -8,16 +8,16 @@ public class CharacterStats : MonoBehaviour
     public float armor = 0;
     public Animator anim;
     bool dead = false;
-
+    public HP_bar hpBar;
     public float maxHealth = 100;
     public float currentHealth { get; private set; }
     public float TotalDamage;
-    //public Image healthBar;
 
     public virtual void Awake()
     {
 
         currentHealth = maxHealth;
+        hpBar.SetMaxHealth((int)maxHealth);
         TotalDamage = Basedamage;
     }
 
@@ -39,7 +39,7 @@ public class CharacterStats : MonoBehaviour
         currentHealth -= TotalDamage;
         Debug.Log(transform.name + " takes " + TotalDamage + " damage.");
 
-        //healthBar.fillAmount = currentHealth / maxHealth;
+        hpBar.SetHealth((int)currentHealth);
 
         if (currentHealth <= 0)
         { 

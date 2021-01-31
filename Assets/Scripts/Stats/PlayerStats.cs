@@ -29,6 +29,7 @@ public class PlayerStats : CharacterStats
     public void PickUpGUN()
     {
         gunPickedUp = true;
+        anim.SetBool("hasGun", true);
     }
 
     public void PickUpSWORD()
