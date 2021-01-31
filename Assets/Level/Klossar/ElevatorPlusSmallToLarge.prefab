@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158762663173403083}
   - component: {fileID: 4074135558771846045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 6370326245484514769}
   - component: {fileID: 2066712301682547429}
   - component: {fileID: 1565015688387381081}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2077006878196289976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 6487939223006513990}
   - component: {fileID: 5542113665951215668}
   - component: {fileID: 2239247878544046603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4423,7 +4423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4993432685222592863}
   - component: {fileID: 9202101173211870923}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Corridor1x2Bland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4468,7 +4468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1279319913870347630}
   - component: {fileID: 1763663121731004680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Corridor1x2Bland (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4512,7 +4512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 984967949201624296}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmallToLarge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4548,7 +4548,7 @@ GameObject:
   - component: {fileID: 9436031641370705}
   - component: {fileID: 7020639269715963631}
   - component: {fileID: 832692826714802398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Corridor1x2LeftLowerEntry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4609,7 +4609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7645059968265573013}
   - component: {fileID: 6569583859894959057}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4653,7 +4653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 201651140640453618}
   - component: {fileID: 4325418464399709363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4697,7 +4697,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1089893020622496561}
   - component: {fileID: 1329892241783197382}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4741,7 +4741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9087147169491815176}
   - component: {fileID: 6484911647521593876}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4786,7 +4786,7 @@ GameObject:
   - component: {fileID: 8878153519719848977}
   - component: {fileID: 895030532123965472}
   - component: {fileID: 3877287855539347455}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4866,7 +4866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7848391781036058237}
   - component: {fileID: 7797133276943654775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4909,7 +4909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9133882665910504932}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4941,7 +4941,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3673653202702331433}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4975,7 +4975,7 @@ GameObject:
   - component: {fileID: 4445334024305712174}
   - component: {fileID: 5588631113720083255}
   - component: {fileID: 7137214445971069082}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5055,7 +5055,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1897730136073718812}
   - component: {fileID: 2470313481922147713}
-  m_Layer: 0
+  - component: {fileID: 46098198838132696}
+  m_Layer: 8
   m_Name: ElevatorPlusSmallToLarge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5093,7 +5094,19 @@ MonoBehaviour:
   objectsICanSpawn: []
   enemiesICanSpawn: []
   spawnPoints: []
-  thisKloss: 0
+  thisKloss: 13
+--- !u!114 &46098198838132696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933941725267922130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430a02ad146db7c44b422d26d87088b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7025861755157642797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5103,7 +5116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8694873283202576876}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5135,7 +5148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7104967963580714745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5169,7 +5182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 544809212354609563}
   - component: {fileID: 5818449502645346006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5213,7 +5226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2592207888470992983}
   - component: {fileID: 5372120021983970285}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5257,7 +5270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6709292673706885958}
   - component: {fileID: 7200163654297835647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5301,7 +5314,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8090979330576847477}
   - component: {fileID: 1184594666540512781}
-  m_Layer: 0
+  - component: {fileID: 5823460381675078646}
+  - component: {fileID: 2051436278708732762}
+  m_Layer: 8
   m_Name: Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5336,3 +5351,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430a02ad146db7c44b422d26d87088b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5823460381675078646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7590181394174257030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67966a6963edb548847e01f572811ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &2051436278708732762
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7590181394174257030}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.3
+  m_Center: {x: 0, y: 2, z: 0}

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2343399324011416968}
   - component: {fileID: 8636202964333103742}
-  m_Layer: 0
+  - component: {fileID: 3630989270961405583}
+  m_Layer: 8
   m_Name: ElevatorPlusLargeToSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +49,31 @@ MonoBehaviour:
   objectsICanSpawn: []
   enemiesICanSpawn: []
   spawnPoints: []
-  thisKloss: 0
+  thisKloss: 14
+--- !u!114 &3630989270961405583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074289565413852980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430a02ad146db7c44b422d26d87088b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3701792231055750779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7302038322692721359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67966a6963edb548847e01f572811ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6490351322076881976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115,6 +140,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4558857823840284406, guid: c8f676caaca6e4644821ef83c5e2e90f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c8f676caaca6e4644821ef83c5e2e90f, type: 3}
+--- !u!1 &7302038322692721359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4558857823840284407, guid: c8f676caaca6e4644821ef83c5e2e90f, type: 3}
+  m_PrefabInstance: {fileID: 6490351322076881976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5091487278218159274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2070183135835586706, guid: c8f676caaca6e4644821ef83c5e2e90f, type: 3}

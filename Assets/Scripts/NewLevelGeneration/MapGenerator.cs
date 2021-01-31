@@ -33,6 +33,7 @@ public class MapGenerator : Randomizer
     public MapSegment ElevatorPlusSmallToLarge;
     #endregion
 
+    public GameObject Player;
 
     public string nextKlossString;
     public MapSegment lastCreated;
@@ -76,10 +77,28 @@ public class MapGenerator : Randomizer
             }
         }
         yield return delay;
+        ColourWorld();
+    }
+
+    private void ColourWorld()
+    {
+        Color background = new Color(
+              UnityEngine.Random.Range(0f, 1f),
+              UnityEngine.Random.Range(0f, 1f),
+              UnityEngine.Random.Range(0f, 1f)
+          );
+        for (int x = 0; x < allSegments.Count; x++)
+        {
+            var t = allSegments[x];
+            var y = t.GetComponent<Block>();
+            y.SetColor(background);
+        }
     }
 
     private Direction Flip()
     {
+        var gm = FindObjectOfType<GameManager1>();
+        gm.terminalSpawned = false;
         int x = UnityEngine.Random.Range(0, 2);
         if (x == 0)
             //Heading right

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5396917685017268183}
   - component: {fileID: 2507029586843424756}
-  m_Layer: 0
+  - component: {fileID: 1374006826502308208}
+  m_Layer: 8
   m_Name: SmallMiddleSingleW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,10 +49,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsICanSpawn:
   - {fileID: 6040741128311923470, guid: 72ec771dbbe8b734ba46635666798bc8, type: 3}
+  - {fileID: 4780304177091794187, guid: b99ee2a1291c5784d876da38d3a19487, type: 3}
   enemiesICanSpawn: []
   spawnPoints:
   - {fileID: 4180929287915696138}
   thisKloss: 8
+--- !u!114 &1374006826502308208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500628984756102162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430a02ad146db7c44b422d26d87088b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1745838053778970311
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +77,7 @@ GameObject:
   - component: {fileID: 1745838053778970362}
   - component: {fileID: 1745838053778970360}
   - component: {fileID: 1745838053778970361}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7950632512895992082}
   - component: {fileID: 2221126000648218815}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4180929287915696138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7381084262974907562}
   - component: {fileID: 6063179788793795798}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 710603281248040377}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -58,6 +58,7 @@ MonoBehaviour:
   Elevator: {fileID: 4558857823840284406, guid: c8f676caaca6e4644821ef83c5e2e90f, type: 3}
   ElevatorPlusLargeToSmall: {fileID: 8636202964333103742, guid: e419880ff9a106f4b8c4ed81c44f9fc5, type: 3}
   ElevatorPlusSmallToLarge: {fileID: 2470313481922147713, guid: f593b38e194c2774fb6969c04e333480, type: 3}
+  Player: {fileID: 8835046276888709115, guid: dc9b81d3c15e32d4bab5f442439ca974, type: 3}
   nextKlossString: 
   lastCreated: {fileID: 0}
   NextKloss: {fileID: 0}

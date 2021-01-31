@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6125856884453649072}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,8 @@ GameObject:
   - component: {fileID: 5907206271394792107}
   - component: {fileID: 924182257058499254}
   - component: {fileID: 5055610413065000854}
-  m_Layer: 0
+  - component: {fileID: 2060448651}
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4290,6 +4291,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3739094298378108938}
   m_Mesh: {fileID: 0}
+--- !u!114 &2060448651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739094298378108938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67966a6963edb548847e01f572811ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4558857823840284407
 GameObject:
   m_ObjectHideFlags: 0
@@ -4301,7 +4314,8 @@ GameObject:
   - component: {fileID: 2070183135835586706}
   - component: {fileID: 1225039737026708409}
   - component: {fileID: 4558857823840284406}
-  m_Layer: 0
+  - component: {fileID: 2060448653}
+  m_Layer: 8
   m_Name: Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4352,6 +4366,19 @@ MonoBehaviour:
   enemiesICanSpawn: []
   spawnPoints: []
   thisKloss: 12
+--- !u!135 &2060448653
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558857823840284407}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.3
+  m_Center: {x: 0, y: 1.87, z: 0}
 --- !u!1 &5422854384061641385
 GameObject:
   m_ObjectHideFlags: 0
@@ -4362,7 +4389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7277330523949390667}
   - component: {fileID: 4382765796415186892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4406,7 +4433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6459048159580585914}
   - component: {fileID: 8387900767248506276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
