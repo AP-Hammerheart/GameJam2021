@@ -7,6 +7,7 @@ public class CharacterStats : MonoBehaviour
     public float Basedamage = 10;
     public float armor = 0;
     public Animator anim;
+    bool dead = false;
 
     public float maxHealth = 100;
     public float currentHealth { get; private set; }
@@ -41,10 +42,11 @@ public class CharacterStats : MonoBehaviour
         //healthBar.fillAmount = currentHealth / maxHealth;
 
         if (currentHealth <= 0)
-        {
-            anim.SetBool("DieBool", true);
-
-            Die();
+        { 
+            if(dead == false)
+            {
+                Die();
+            }
         }
     }
 
@@ -52,7 +54,7 @@ public class CharacterStats : MonoBehaviour
     {
         // Die in some way
         // This method is meant to be overwritten
-
+        dead = true;
         Debug.Log(transform.name + " Died.");
     }
 }
