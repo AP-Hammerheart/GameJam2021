@@ -43,10 +43,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9838773e29356ee469c73cb67584c23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSegment: {fileID: -6642992851415858328, guid: ca36ad29a98f8bd49851b920054a1682, type: 3}
-  endSegment: {fileID: -6108164171044806534, guid: 9032029c48424f44ca7ea673a8990fdc, type: 3}
+  largeLeftEndPrefab: {fileID: -3477240092646537584, guid: 2c9edefbf5bc562479a9c09902610cf8, type: 3}
+  largeMiddleSinglePrefab: {fileID: 8318474456722577115, guid: ff8ab162a6f1e5c4e8f944ad05a85593, type: 3}
+  largeMiddleSingleWPrefab: {fileID: 7389088838008894211, guid: 7758c570594fb554c809820ac8330ba7, type: 3}
+  largeRightEndPrefab: {fileID: 351930756852828846, guid: 030586896162ee84fb738c2d971ad83f, type: 3}
+  largeToSmallPrefab: {fileID: 5132746163982132921, guid: c203e87e7326f5b47a9a4f21e8f37e5f, type: 3}
+  SmallLeftEndPrefab: {fileID: 9188740516382476865, guid: fbab9548248605c4b8a1988ee922d5ec, type: 3}
+  SmallLeftStaircaseW1Prefab: {fileID: -2903707578395714531, guid: 3f0c7ed4bade21145b8929bb185f0fad, type: 3}
+  SmallMiddleSinglePrefab: {fileID: -3954728674304578089, guid: 07af6811288add04998aeea6c212af0d, type: 3}
+  SmallMiddleSingleWPrefab: {fileID: 2507029586843424756, guid: ff2344d1288cc724b8dd4615b9a347e6, type: 3}
+  SmallRightEndPrefab: {fileID: -6274688372473751425, guid: 297d372630fbf43459335c850e65e7a8, type: 3}
+  SmallRightStaircasePrefab: {fileID: 84031568878562720, guid: 947a5ae942eb6ad49a6bd2743cc1f6df, type: 3}
+  SmallToLargePrefab: {fileID: -5412307354546856421, guid: 4cf5134f2c7f47e458cb83694b83e47f, type: 3}
+  lastCreated: {fileID: 0}
   mapSegmentPrefabs:
   - {fileID: -5665643719106408790, guid: 195b9d76048833b4e9ee97f34b4358d0, type: 3}
   - {fileID: 859503846244166817, guid: b6933b9be71edbf449bf29d59cab8af2, type: 3}
   generationStepDelay: 0
-  segmentAmount: 15
+  segmentAmount: 30
+  wildcard: 0

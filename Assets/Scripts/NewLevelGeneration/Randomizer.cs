@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using static MapGenerator;
 
 namespace Assets.Scripts.NewLevelGeneration
 {
-    public class Randomizer
+    public abstract class Randomizer: MonoBehaviour
     {
-
-        public void DetermineFirstKloss(Direction dir)
+        public int GetRandomBetween(int one, int two)
         {
-
+            return UnityEngine.Random.Range(one, two);
         }
     }
 }
