@@ -22,7 +22,7 @@ public class GameManager1 : MonoBehaviour
         StartCoroutine(generatorInstance.GenerateMap(transform, roundNumber));
     }
 
-    private void NewLevel()
+    public void NewLevel()
     {
         StopAllCoroutines();
         roundNumber++;
