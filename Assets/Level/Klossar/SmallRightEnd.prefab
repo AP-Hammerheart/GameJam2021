@@ -84,7 +84,7 @@ MonoBehaviour:
   enemiesICanSpawn: []
   spawnPoints:
   - {fileID: 7432564726069603587}
-  thisKloss: 0
+  thisKloss: 9
 --- !u!1001 &5949767155952762774
 PrefabInstance:
   m_ObjectHideFlags: 0

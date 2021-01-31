@@ -18,6 +18,7 @@ public class GameManager1 : MonoBehaviour
     private void BeginGame()
     {
         generatorInstance = Instantiate(generator) as MapGenerator;
+        generatorInstance.wildcard = (UnityEngine.Random.Range(1, 10) + roundNumber);
         StartCoroutine(generatorInstance.GenerateMap(transform, roundNumber));
     }
 
