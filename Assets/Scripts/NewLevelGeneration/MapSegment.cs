@@ -12,18 +12,39 @@ public class MapSegment : MonoBehaviour
     }
 
     public GameObject[] objectsICanSpawn;
+    public GameObject[] enemiesICanSpawn;
     public Transform[] spawnPoints;
 
     public Kloss thisKloss;
     private void Start()
     {
         thisKloss = new Kloss();
+        if (thisKloss != Kloss.SmallLeftStaircaseW1 && thisKloss != Kloss.SmallRightStaircase)
+        {
+            StartCoroutine(SpawnRandom());
+        }
     }
 
-    //public GameObject SpawnRandom()
-    //{
-    //    gameObject g = Instantiate
-    //}
+    public IEnumerator SpawnRandom()
+    {
+        yield return new WaitForSeconds(0.5f);
+        //int x = Random.Range(0, 1);
+        int x = 0;
+        if(x == 0)
+        {
+            //items
+            int itemToSpawn = Random.Range(0, objectsICanSpawn.Length - 1);
+            GameObject g = Instantiate(objectsICanSpawn[itemToSpawn], spawnPoints[0].position, Quaternion.identity);
+            var t = g.GetComponent<PickableItem>();
+            t.Initialize();
+        }
+        else
+        {
+            //enemies
+            int enemyToSpawn = Random.Range(0, enemiesICanSpawn.Length - 1);
+            GameObject g = Instantiate(enemiesICanSpawn[enemyToSpawn], spawnPoints[0].position, Quaternion.identity);
+        }
+    }
 
     public void SetKloss(string klossname)
     {
@@ -52,5 +73,4 @@ public class MapSegment : MonoBehaviour
         else if (klossname == "SmallToLargePrefab")
             thisKloss = Kloss.SmallToLarge;
     }
-
 }

@@ -532,10 +532,10 @@ public class MapGenerator : Randomizer
 
                 if (x == 1)
                 {
-                    nextKlossString = "largeToSmallPrefab";
-                    NextKloss = largeToSmallPrefab;
-                    NextKloss.SetKloss("largeToSmallPrefab");
-                    return largeToSmallPrefab;
+                    nextKlossString = "SmallToLargePrefab";
+                    NextKloss = SmallToLargePrefab;
+                    NextKloss.SetKloss("SmallToLargePrefab");
+                    return SmallToLargePrefab;
                 }
                 if (x == 2)
                 {
