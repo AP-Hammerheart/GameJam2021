@@ -14,14 +14,14 @@ public class CharacterController2d : MonoBehaviour
     public float k_GroundedRadius = 2f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
-    private Rigidbody2D m_Rigidbody2D;
+    private Rigidbody m_Rigidbody;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 velocity = Vector3.zero;
-    //public Animator anim;
+    public Animator anim;
 
     private void Awake()
     {
-        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        m_Rigidbody = GetComponent<Rigidbody>();
     }
 
 
@@ -31,7 +31,7 @@ public class CharacterController2d : MonoBehaviour
         m_Grounded = false;
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+        Collider[] colliders = Physics.OverlapSphere(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)
@@ -51,9 +51,9 @@ public class CharacterController2d : MonoBehaviour
 
 
             // Move the character by finding the target velocity
-            Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+            Vector3 targetVelocity = new Vector3(move * 10f, m_Rigidbody.velocity.y, 0f);
             // And then smoothing it out and applying it to the character
-            m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
+            m_Rigidbody.velocity = Vector3.SmoothDamp(m_Rigidbody.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
 
             // If the input is moving the player right and the player is facing left...
             if (move > 0 && !m_FacingRight)
@@ -72,14 +72,11 @@ public class CharacterController2d : MonoBehaviour
         if (m_Grounded && jump)
         {
             // Add a vertical force to the player.
-           
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
+            anim.SetTrigger("Jump");
+            m_Rigidbody.AddForce(new Vector3(0f, m_JumpForce, 0f), ForceMode.Impulse);
             m_Grounded = false;
-
-
         }
     }
-
 
     private void Update()
     {

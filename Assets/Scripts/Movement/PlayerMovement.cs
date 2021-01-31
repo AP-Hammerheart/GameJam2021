@@ -22,15 +22,12 @@ public class PlayerMovement : MonoBehaviour
         // This is movement script for PC
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        //anim.SetFloat("speed", Mathf.Abs(horizontalMove));
+        anim.SetFloat("speed", Mathf.Abs(horizontalMove));
 
 
         if (Input.GetButtonDown("Jump"))
         {
-
             jump = true;
-           // anim.SetTrigger("HeroJump");
-
         }
 
         //if (Input.GetButtonDown("Crouch"))
